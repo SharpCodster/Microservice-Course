@@ -7,17 +7,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{87EDBC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{D0624682-0BC0-414B-8FB1-671B37140CC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaioInCloud.Catalog.Api", "src\Catalog\VivaioInCloud.Catalog.Api\VivaioInCloud.Catalog.Api.csproj", "{DA035387-A39E-4364-B00B-13552AE7217D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Catalog.Api", "src\Catalog\VivaioInCloud.Catalog.Api\VivaioInCloud.Catalog.Api.csproj", "{DA035387-A39E-4364-B00B-13552AE7217D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Catalog.Abstraction", "src\Catalog\VivaioInCloud.Catalog.Abstraction\VivaioInCloud.Catalog.Abstraction.csproj", "{57F4E531-C35E-4216-AEE2-170FD242A5A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaioInCloud.Common", "src\Common\VivaioInCloud.Common\VivaioInCloud.Common.csproj", "{27231779-F7F4-4568-AEB4-6763FD773C97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Common", "src\Common\VivaioInCloud.Common\VivaioInCloud.Common.csproj", "{27231779-F7F4-4568-AEB4-6763FD773C97}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Catalog.Entities", "src\Catalog\VivaioInCloud.Catalog.Entities\VivaioInCloud.Catalog.Entities.csproj", "{308458E7-DC05-4998-98A6-15D7F43509AE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Catalog.Infrastructure", "src\Catalog\VivaioInCloud.Catalog.Infrastructure\VivaioInCloud.Catalog.Infrastructure.csproj", "{59F8AB82-BCA8-4690-9A91-3F9296DE7D2B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Catalog.Services", "src\Catalog\VivaioInCloud.Catalog.Services\VivaioInCloud.Catalog.Services.csproj", "{88181A36-5A11-4722-9457-13F6459625B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{8EB21932-A382-42FC-B294-7CF90CA69657}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaioInCloud.Identity.Abstraction", "src\Identity\VivaioInCloud.Identity.Abstraction\VivaioInCloud.Identity.Abstraction.csproj", "{5657F7A7-85A2-48D1-AB0F-CFAE81DC96E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaioInCloud.Identity.Infrastructure", "src\Identity\VivaioInCloud.Identity.Infrastructure\VivaioInCloud.Identity.Infrastructure.csproj", "{C570A5E3-DA12-494C-B038-59745368FC7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaioInCloud.Identity.Services", "src\Identity\VivaioInCloud.Identity.Services\VivaioInCloud.Identity.Services.csproj", "{566B570B-7CBB-46C9-B692-ED6D387FE3AB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Identity.Entities", "src\Identity\VivaioInCloud.Identity.Entities\VivaioInCloud.Identity.Entities.csproj", "{401E5CFA-BAFC-4EFD-AE45-748640CE656B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaioInCloud.Identity.Api", "src\Identity\VivaioInCloud.Identity.Api\VivaioInCloud.Identity.Api.csproj", "{1972A653-AECE-4CF0-8BEF-D7108A5B1102}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +61,26 @@ Global
 		{88181A36-5A11-4722-9457-13F6459625B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88181A36-5A11-4722-9457-13F6459625B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88181A36-5A11-4722-9457-13F6459625B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5657F7A7-85A2-48D1-AB0F-CFAE81DC96E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5657F7A7-85A2-48D1-AB0F-CFAE81DC96E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5657F7A7-85A2-48D1-AB0F-CFAE81DC96E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5657F7A7-85A2-48D1-AB0F-CFAE81DC96E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C570A5E3-DA12-494C-B038-59745368FC7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C570A5E3-DA12-494C-B038-59745368FC7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C570A5E3-DA12-494C-B038-59745368FC7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C570A5E3-DA12-494C-B038-59745368FC7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{566B570B-7CBB-46C9-B692-ED6D387FE3AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{566B570B-7CBB-46C9-B692-ED6D387FE3AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{566B570B-7CBB-46C9-B692-ED6D387FE3AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{566B570B-7CBB-46C9-B692-ED6D387FE3AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{401E5CFA-BAFC-4EFD-AE45-748640CE656B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{401E5CFA-BAFC-4EFD-AE45-748640CE656B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{401E5CFA-BAFC-4EFD-AE45-748640CE656B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{401E5CFA-BAFC-4EFD-AE45-748640CE656B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1972A653-AECE-4CF0-8BEF-D7108A5B1102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1972A653-AECE-4CF0-8BEF-D7108A5B1102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1972A653-AECE-4CF0-8BEF-D7108A5B1102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1972A653-AECE-4CF0-8BEF-D7108A5B1102}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +92,11 @@ Global
 		{308458E7-DC05-4998-98A6-15D7F43509AE} = {D0624682-0BC0-414B-8FB1-671B37140CC7}
 		{59F8AB82-BCA8-4690-9A91-3F9296DE7D2B} = {D0624682-0BC0-414B-8FB1-671B37140CC7}
 		{88181A36-5A11-4722-9457-13F6459625B8} = {D0624682-0BC0-414B-8FB1-671B37140CC7}
+		{5657F7A7-85A2-48D1-AB0F-CFAE81DC96E6} = {8EB21932-A382-42FC-B294-7CF90CA69657}
+		{C570A5E3-DA12-494C-B038-59745368FC7F} = {8EB21932-A382-42FC-B294-7CF90CA69657}
+		{566B570B-7CBB-46C9-B692-ED6D387FE3AB} = {8EB21932-A382-42FC-B294-7CF90CA69657}
+		{401E5CFA-BAFC-4EFD-AE45-748640CE656B} = {8EB21932-A382-42FC-B294-7CF90CA69657}
+		{1972A653-AECE-4CF0-8BEF-D7108A5B1102} = {8EB21932-A382-42FC-B294-7CF90CA69657}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43A0F269-C1B9-4B0E-823E-8B5478B6D75E}

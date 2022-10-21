@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\VivaioInCloud.Common\VivaioInCloud.Common.csproj" />
-    <ProjectReference Include="..\..\Identity\VivaioInCloud.Identity.Entities\VivaioInCloud.Identity.Entities.csproj" />
+    <ProjectReference Include="..\VivaioInCloud.Identity.Entities\VivaioInCloud.Identity.Entities.csproj" />
   </ItemGroup>
 
 </Project>

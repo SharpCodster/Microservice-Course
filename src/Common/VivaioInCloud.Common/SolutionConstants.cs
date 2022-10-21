@@ -20,13 +20,14 @@
         public static class DatabasesName
         {
             public const string CATALOG = "CatalogDatabase";
+            public const string IDENTITY = "IdentityDatabase";
         }
 
         //public static class EventStream
         //{
         //    public static class Groups
         //    {
-        //        public const string GENERAL = "eolo-fsm-worker";
+        //        public const string GENERAL = "fsm-worker";
         //    }
         //    public static class Topics
         //    {
