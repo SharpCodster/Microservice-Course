@@ -2,20 +2,20 @@
 {
     public static class SolutionConstants
     {
-        //public static class ConfigSections
-        //{
-        //    public const string AUTHORIZATION = "Authorization";
-        //    public const string LDAP_DOMAINS = "LdapDomains";
-        //    public const string KAFKA = "Kafka";
-        //    public const string ACCOUNT_REDIRECT_URLS = "AccountRedirectUrls";
-        //    public const string JOBS = "Jobs";
-        //    public const string MAG_NEWS_PARAMS = "MagNewsParams";
-        //    public const string HTTP_CLIENT = "HttpClient";
-        //    public const string MEMORY_CACHE = "Cache";
-        //    public const string WORKORDER_SERVICE = "WorkOrderService";
-        //    public const string LOCALIZATION = "Localization";
-        //    public const string KEYVAULT_URL = "KeyVaultUri";
-        //}
+        public static class ConfigSections
+        {
+            //    public const string AUTHORIZATION = "Authorization";
+            //    public const string LDAP_DOMAINS = "LdapDomains";
+            public const string NOTIFICATION = "TODO";
+            //    public const string ACCOUNT_REDIRECT_URLS = "AccountRedirectUrls";
+            //    public const string JOBS = "Jobs";
+            //    public const string MAG_NEWS_PARAMS = "MagNewsParams";
+            //    public const string HTTP_CLIENT = "HttpClient";
+            //    public const string MEMORY_CACHE = "Cache";
+            //    public const string WORKORDER_SERVICE = "WorkOrderService";
+            //    public const string LOCALIZATION = "Localization";
+            //    public const string KEYVAULT_URL = "KeyVaultUri";
+        }
 
         public static class DatabasesName
         {
@@ -54,15 +54,15 @@
 
         }
 
-        //public static class NotificationAction
-        //{
-        //    public const string EMAIL = "email";
-        //}
+        public static class NotificationAction
+        {
+            public const string EMAIL = "email";
+        }
 
-        //public static class EmailTemplates
-        //{
-        //    public const string PASSWORD_RESET = "password-reset-template";
-        //    public const string CONFIRM_ACCOUNT = "confirm-account-template";
-        //}
+        public static class EmailTemplates
+        {
+            public const string PASSWORD_RESET = "password-reset-template";
+            public const string CONFIRM_ACCOUNT = "confirm-account-template";
+        }
     }
 }

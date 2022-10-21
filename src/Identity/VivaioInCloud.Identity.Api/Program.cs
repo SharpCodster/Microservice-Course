@@ -13,6 +13,7 @@ using VivaioInCloud.Common.Contexts;
 using VivaioInCloud.Common.Middleware;
 using VivaioInCloud.Common.Repositories;
 using VivaioInCloud.Common.ServiceExtensions;
+using VivaioInCloud.Notificator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +28,7 @@ builder.Services.AddSingleton(typeof(IRequestContextProvider), typeof(RequestCon
 builder.Services.AddTransient<CorrelationIdMiddleware>();
 
 // EXTENDED SERVICES /////////////////////////////////////////////////////////////////////////
-
+builder.Services.AddNotification(builder.Configuration);
 
 // MICROSERVICE SERVICES /////////////////////////////////////////////////////////////////////
 builder.Services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork<ApplicationDbContext>));

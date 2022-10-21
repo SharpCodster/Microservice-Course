@@ -21,15 +21,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Catalog.Servi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{8EB21932-A382-42FC-B294-7CF90CA69657}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaioInCloud.Identity.Abstraction", "src\Identity\VivaioInCloud.Identity.Abstraction\VivaioInCloud.Identity.Abstraction.csproj", "{5657F7A7-85A2-48D1-AB0F-CFAE81DC96E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Identity.Abstraction", "src\Identity\VivaioInCloud.Identity.Abstraction\VivaioInCloud.Identity.Abstraction.csproj", "{5657F7A7-85A2-48D1-AB0F-CFAE81DC96E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaioInCloud.Identity.Infrastructure", "src\Identity\VivaioInCloud.Identity.Infrastructure\VivaioInCloud.Identity.Infrastructure.csproj", "{C570A5E3-DA12-494C-B038-59745368FC7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Identity.Infrastructure", "src\Identity\VivaioInCloud.Identity.Infrastructure\VivaioInCloud.Identity.Infrastructure.csproj", "{C570A5E3-DA12-494C-B038-59745368FC7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaioInCloud.Identity.Services", "src\Identity\VivaioInCloud.Identity.Services\VivaioInCloud.Identity.Services.csproj", "{566B570B-7CBB-46C9-B692-ED6D387FE3AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Identity.Services", "src\Identity\VivaioInCloud.Identity.Services\VivaioInCloud.Identity.Services.csproj", "{566B570B-7CBB-46C9-B692-ED6D387FE3AB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Identity.Entities", "src\Identity\VivaioInCloud.Identity.Entities\VivaioInCloud.Identity.Entities.csproj", "{401E5CFA-BAFC-4EFD-AE45-748640CE656B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaioInCloud.Identity.Api", "src\Identity\VivaioInCloud.Identity.Api\VivaioInCloud.Identity.Api.csproj", "{1972A653-AECE-4CF0-8BEF-D7108A5B1102}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Identity.Api", "src\Identity\VivaioInCloud.Identity.Api\VivaioInCloud.Identity.Api.csproj", "{1972A653-AECE-4CF0-8BEF-D7108A5B1102}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaioInCloud.Notificator", "src\Common\VivaioInCloud.Notificator\VivaioInCloud.Notificator.csproj", "{B3C93F5F-F793-4458-B74E-B06DA065DF33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{1972A653-AECE-4CF0-8BEF-D7108A5B1102}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1972A653-AECE-4CF0-8BEF-D7108A5B1102}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1972A653-AECE-4CF0-8BEF-D7108A5B1102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C93F5F-F793-4458-B74E-B06DA065DF33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C93F5F-F793-4458-B74E-B06DA065DF33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C93F5F-F793-4458-B74E-B06DA065DF33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C93F5F-F793-4458-B74E-B06DA065DF33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +103,7 @@ Global
 		{566B570B-7CBB-46C9-B692-ED6D387FE3AB} = {8EB21932-A382-42FC-B294-7CF90CA69657}
 		{401E5CFA-BAFC-4EFD-AE45-748640CE656B} = {8EB21932-A382-42FC-B294-7CF90CA69657}
 		{1972A653-AECE-4CF0-8BEF-D7108A5B1102} = {8EB21932-A382-42FC-B294-7CF90CA69657}
+		{B3C93F5F-F793-4458-B74E-B06DA065DF33} = {87EDBCBA-2E19-4D53-885B-BC31A5468FD3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43A0F269-C1B9-4B0E-823E-8B5478B6D75E}

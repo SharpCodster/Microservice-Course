@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\VivaioInCloud.Common\VivaioInCloud.Common.csproj" />
+    <ProjectReference Include="..\..\Common\VivaioInCloud.Notificator\VivaioInCloud.Notificator.csproj" />
     <ProjectReference Include="..\VivaioInCloud.Identity.Abstraction\VivaioInCloud.Identity.Abstraction.csproj" />
     <ProjectReference Include="..\VivaioInCloud.Identity.Entities\VivaioInCloud.Identity.Entities.csproj" />
     <ProjectReference Include="..\VivaioInCloud.Identity.Infrastructure\VivaioInCloud.Identity.Infrastructure.csproj" />
