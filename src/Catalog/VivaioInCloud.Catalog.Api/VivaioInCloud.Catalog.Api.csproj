@@ -7,13 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\VivaioInCloud.Common\VivaioInCloud.Common.csproj" />
     <ProjectReference Include="..\VivaioInCloud.Catalog.Abstraction\VivaioInCloud.Catalog.Abstraction.csproj" />
     <ProjectReference Include="..\VivaioInCloud.Catalog.Entities\VivaioInCloud.Catalog.Entities.csproj" />
+    <ProjectReference Include="..\VivaioInCloud.Catalog.Infrastructure\VivaioInCloud.Catalog.Infrastructure.csproj" />
+    <ProjectReference Include="..\VivaioInCloud.Catalog.Services\VivaioInCloud.Catalog.Services.csproj" />
   </ItemGroup>
 
 </Project>

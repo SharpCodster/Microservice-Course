@@ -19,24 +19,24 @@ namespace VivaioInCloud.Catalog.Api.Controllers
         }
 
         [HttpGet]
-        [Route("catalog")]
-        [Tags("catalog-catalog")]
+        [Route("category")]
+        [Tags("catalog-category")]
         public async Task<IActionResult> Get([FromQuery] Dictionary<string, string> request)
         {
             return await GetMethod(request);
         }
 
         [HttpGet]
-        [Route("catalog/{id}")]
-        [Tags("catalog-catalog")]
+        [Route("category/{id}")]
+        [Tags("catalog-category")]
         public async Task<IActionResult> GetById([FromRoute] string id)
         {
             return await GetByIdMethod(id);
         }
 
         [HttpPost]
-        [Route("catalog")]
-        [Tags("catalog-catalog")]
+        [Route("category")]
+        [Tags("catalog-category")]
         //[Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Create([FromBody] ItemTypeDtoWrite newDto)
         {
@@ -44,8 +44,8 @@ namespace VivaioInCloud.Catalog.Api.Controllers
         }
 
         [HttpPut]
-        [Route("catalog/{id}")]
-        [Tags("catalog-catalog")]
+        [Route("category/{id}")]
+        [Tags("catalog-category")]
         //[Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Update(string id, [FromBody] ItemTypeDtoWrite updateDto)
         {
@@ -53,8 +53,8 @@ namespace VivaioInCloud.Catalog.Api.Controllers
         }
 
         [HttpPatch]
-        [Route("catalog/{id}")]
-        [Tags("catalog-catalog")]
+        [Route("category/{id}")]
+        [Tags("catalog-category")]
         //[Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Patch(string id, [FromBody] Dictionary<string, object> valuesToPatch)
         {
@@ -62,8 +62,8 @@ namespace VivaioInCloud.Catalog.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("catalog/{id}")]
-        [Tags("catalog-catalog")]
+        [Route("category/{id}")]
+        [Tags("catalog-category")]
         //[Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Delete(string id)
         {

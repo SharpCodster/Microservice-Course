@@ -1,2 +1,2 @@
-# knock-knock
-A reusable customizable authentication server
+# Microservice sample
+Just for fun

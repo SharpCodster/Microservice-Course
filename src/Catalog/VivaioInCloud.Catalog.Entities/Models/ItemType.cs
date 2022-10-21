@@ -8,7 +8,7 @@ namespace VivaioInCloud.Catalog.Entities.Models
         {
             Items = new HashSet<CatalogItem>();
         }
-       
+
         public string Name { get; set; }
 
         public virtual ICollection<CatalogItem>? Items { get; set; }

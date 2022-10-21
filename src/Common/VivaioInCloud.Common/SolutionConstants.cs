@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VivaioInCloud.Common
+﻿namespace VivaioInCloud.Common
 {
     public static class SolutionConstants
     {
@@ -23,13 +17,10 @@ namespace VivaioInCloud.Common
         //    public const string KEYVAULT_URL = "KeyVaultUri";
         //}
 
-        //public static class DatabasesName
-        //{
-        //    public const string LEGACY = "LegacyDatabase";
-        //    public const string SAMPLE = "SampleDatabase";
-        //    public const string IDENTITY = "IdentityDatabase";
-        //    public const string WORK_ORDER = "WorkOrderDatabase";
-        //}
+        public static class DatabasesName
+        {
+            public const string CATALOG = "CatalogDatabase";
+        }
 
         //public static class EventStream
         //{
