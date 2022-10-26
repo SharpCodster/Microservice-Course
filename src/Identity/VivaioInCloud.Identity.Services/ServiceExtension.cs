@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VivaioInCloud.Identity.Abstraction.Services;
+using VivaioInCloud.Identity.Services.Services;
 
 namespace VivaioInCloud.Identity.Services
 {
@@ -8,8 +10,12 @@ namespace VivaioInCloud.Identity.Services
         public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
         {
             return services
-                //.AddScoped<ICatalogItemService, CatalogItemService>()
-                //.AddScoped<IItemTypeService, ItemTypeService>()
+                .AddScoped<IApplicationUserService, ApplicationUserService>()
+                .AddScoped<IClientSecretService, ClientSecretService>()
+                .AddScoped<IRolesService, RolesService>()
+                .AddScoped<ITokenClaimsService, TokenClaimService>()
+                .AddScoped<IUserAuthenticationManager, UserAuthenticationManager>()
+                .AddScoped<IApplicationRoleService, ApplicationRoleService>()
             ;
         }
     }

@@ -16,22 +16,22 @@ using VivaioInCloud.Notificator.Models;
 
 namespace VivaioInCloud.Identity.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/v1")]
     [ApiController]
-    public class AuthenticationController : ControllerBase
+    public class UserAuthenticationController : ControllerBase
     {
-        private readonly ILogger<AuthenticationController> _logger;
+        private readonly ILogger<UserAuthenticationController> _logger;
         private readonly IUserAuthenticationManager _identityService;
         private readonly INotify _notify;
         private readonly AccountRedirectUrlsOptions _options;
         private readonly IValidator<LoginRequest> _loginValidator;
         private readonly IValidator<RefreshTokenRequest> _refreshValidator;
 
-        public AuthenticationController(
+        public UserAuthenticationController(
             IValidator<LoginRequest> loginValidator,
             IValidator<RefreshTokenRequest> refreshValidator,
             IUserAuthenticationManager identityService,
-            ILogger<AuthenticationController> logger,
+            ILogger<UserAuthenticationController> logger,
             INotify notify,
             IOptions<AccountRedirectUrlsOptions> options
             )

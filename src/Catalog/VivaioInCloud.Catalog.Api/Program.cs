@@ -13,6 +13,7 @@ using VivaioInCloud.Common.Contexts;
 using VivaioInCloud.Common.Middleware;
 using VivaioInCloud.Common.Repositories;
 using VivaioInCloud.Common.ServiceExtensions;
+using VivaioInCloud.Notificator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDatabase<ApplicationDbContext>(SolutionConstants.DatabasesName.CATALOG, builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddSwagger("Catalog Microservice");
+builder.Services.AddPublicKeyAuth(builder.Configuration);
 builder.Services.AddAutoMapperWithConfig();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ISpecificationEvaluator, SpecificationEvaluator>(p => new SpecificationEvaluator(false));
@@ -27,7 +29,7 @@ builder.Services.AddSingleton(typeof(IRequestContextProvider), typeof(RequestCon
 builder.Services.AddTransient<CorrelationIdMiddleware>();
 
 // EXTENDED SERVICES /////////////////////////////////////////////////////////////////////////
-
+builder.Services.AddNotification(builder.Configuration);
 
 // MICROSERVICE SERVICES /////////////////////////////////////////////////////////////////////
 builder.Services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork<ApplicationDbContext>));

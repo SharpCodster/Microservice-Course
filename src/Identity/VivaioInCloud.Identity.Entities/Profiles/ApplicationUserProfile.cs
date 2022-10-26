@@ -20,9 +20,7 @@ namespace VivaioInCloud.Identity.Model.Profiles
                 .ForMember(dest => dest.LockoutEnd, opt => opt.MapFrom(source => source.LockoutEnd))
                 .ForMember(dest => dest.LockoutEnabled, opt => opt.MapFrom(source => source.LockoutEnabled))
                 .ForMember(dest => dest.AccessFailedCount, opt => opt.MapFrom(source => source.AccessFailedCount))
-                .ForMember(dest => dest.IsDomainlUser, opt => opt.MapFrom(source => source.IsDomainlUser))
                 .ForMember(dest => dest.IsActive, opt => opt.MapFrom(source => source.IsActive))
-                .ForMember(dest => dest.InstallerId, opt => opt.MapFrom(source => source.InstallerId))
                 .ForMember(dest => dest.IdentityRoles, opt => opt.MapFrom(source => source.IdentityRoles))
             .ReverseMap();
 
@@ -30,7 +28,6 @@ namespace VivaioInCloud.Identity.Model.Profiles
                 .ForWriteDtoToEntity()
                 .ForMember(dest => dest.TwoFactorEnabled, opt => opt.MapFrom(source => source.TwoFactorEnabled))
                 .ForMember(dest => dest.IsActive, opt => opt.MapFrom(source => source.IsActive))
-                .ForMember(dest => dest.InstallerId, opt => opt.MapFrom(source => source.InstallerId))
                 .ForMember(dest => dest.Email, opt => opt.Ignore())
                 .ForMember(dest => dest.UserName, opt => opt.Ignore())
                 .ForMember(dest => dest.EmailConfirmed, opt => opt.Ignore())
@@ -39,7 +36,6 @@ namespace VivaioInCloud.Identity.Model.Profiles
                 .ForMember(dest => dest.LockoutEnd, opt => opt.Ignore())
                 .ForMember(dest => dest.LockoutEnabled, opt => opt.Ignore())
                 .ForMember(dest => dest.AccessFailedCount, opt => opt.Ignore())
-                .ForMember(dest => dest.IsDomainlUser, opt => opt.Ignore())
                 .ForMember(dest => dest.IdentityRoles, opt => opt.Ignore())
             .ReverseMap();
         }

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Ardalis.Specification;
+using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,55 +8,56 @@ using VivaioInCloud.Catalog.Entities.Dtos;
 using VivaioInCloud.Catalog.Entities.Models;
 using VivaioInCloud.Common;
 using VivaioInCloud.Common.Controllers;
+using VivaioInCloud.Common.Specifications;
 
 namespace VivaioInCloud.Catalog.Api.Controllers
 {
     [ApiController]
     [Route("api/v1")]
-    public class CatalogController : RestController<CatalogItem, CatalogItemDtoRead, CatalogItemDtoWrite>
+    public class PreferencesController : RestController<ItemType, ItemTypeDtoRead, ItemTypeDtoWrite>
     {
-        public CatalogController(IValidator<CatalogItemDtoWrite> validator, IMapper mapper, ICatalogItemService service, ILogger<CatalogController> logger)
+        public PreferencesController(IValidator<ItemTypeDtoWrite> validator, IMapper mapper, IItemTypeService service, ILogger<CategoriesController> logger)
             : base(validator, mapper, service, logger)
         {
         }
 
         [HttpGet]
-        [Route("catalog")]
-        [Tags("catalog-catalog")]
+        [Route("preferences")]
+        [Tags("catalog-preferences")]
         public async Task<IActionResult> Get([FromQuery] Dictionary<string, string> request)
         {
             return await GetMethod(request);
         }
 
         [HttpGet]
-        [Route("catalog/{id}")]
-        [Tags("catalog-catalog")]
+        [Route("preferences/{id}")]
+        [Tags("catalog-preferences")]
         public async Task<IActionResult> GetById([FromRoute] string id)
         {
             return await GetByIdMethod(id);
         }
 
         [HttpPost]
-        [Route("catalog")]
-        [Tags("catalog-catalog")]
+        [Route("preferences")]
+        [Tags("catalog-preferences")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
-        public async Task<IActionResult> Create([FromBody] CatalogItemDtoWrite newDto)
+        public async Task<IActionResult> Create([FromBody] ItemTypeDtoWrite newDto)
         {
             return await PostMethod(newDto);
         }
 
         [HttpPut]
-        [Route("catalog/{id}")]
-        [Tags("catalog-catalog")]
+        [Route("preferences/{id}")]
+        [Tags("catalog-preferences")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
-        public async Task<IActionResult> Update(string id, [FromBody] CatalogItemDtoWrite updateDto)
+        public async Task<IActionResult> Update(string id, [FromBody] ItemTypeDtoWrite updateDto)
         {
             return await PutMethod(id, updateDto);
         }
 
         [HttpPatch]
-        [Route("catalog/{id}")]
-        [Tags("catalog-catalog")]
+        [Route("preferences/{id}")]
+        [Tags("catalog-preferences")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Patch(string id, [FromBody] Dictionary<string, object> valuesToPatch)
         {
@@ -63,8 +65,8 @@ namespace VivaioInCloud.Catalog.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("catalog/{id}")]
-        [Tags("catalog-catalog")]
+        [Route("preferences/{id}")]
+        [Tags("catalog-preferences")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Delete(string id)
         {
@@ -72,3 +74,4 @@ namespace VivaioInCloud.Catalog.Api.Controllers
         }
     }
 }
+

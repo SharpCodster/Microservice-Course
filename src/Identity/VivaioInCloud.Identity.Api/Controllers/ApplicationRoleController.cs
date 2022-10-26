@@ -8,7 +8,7 @@ using VivaioInCloud.Identity.Entities.Models;
 
 namespace VivaioInCloud.Identity.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/v1")]
     [ApiController]
     public class ApplicationRoleController : RestController<ApplicationRole, ApplicationRoleDtoRead, ApplicationRoleDtoWrite>
     {
@@ -19,40 +19,48 @@ namespace VivaioInCloud.Identity.Controllers
         }
 
         [HttpGet]
+        [Route("application-roles")]
+        [Tags("ApplicationRoles")]
         public async Task<IActionResult> Get([FromQuery] Dictionary<string, string> request)
         {
             return await GetMethod(request);
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("application-roles/{id}")]
+        [Tags("ApplicationRoles")]
         public async Task<IActionResult> GetById([FromRoute] string id)
         {
             return await GetByIdMethod(id);
         }
 
         [HttpPost]
+        [Route("application-roles")]
+        [Tags("ApplicationRoles")]
         public async Task<IActionResult> Create([FromBody] ApplicationRoleDtoWrite newDto)
         {
             return await PostMethod(newDto);
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("application-roles/{id}")]
+        [Tags("ApplicationRoles")]
         public async Task<IActionResult> Update(string id, [FromBody] ApplicationRoleDtoWrite updateDto)
         {
             return await PutMethod(id, updateDto);
         }
 
         [HttpPatch]
-        [Route("{id}")]
+        [Route("application-roles/{id}")]
+        [Tags("ApplicationRoles")]
         public async Task<IActionResult> Patch(string id, [FromBody] Dictionary<string, object> valuesToPatch)
         {
             return await PatchMethod(id, valuesToPatch);
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("application-roles/{id}")]
+        [Tags("ApplicationRoles")]
         public async Task<IActionResult> Delete(string id)
         {
             return await DeleteMethod(id);

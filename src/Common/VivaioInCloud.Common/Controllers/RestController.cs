@@ -30,7 +30,7 @@ namespace VivaioInCloud.Common.Controllers
             _logger = logger;
         }
 
-        protected async Task<IActionResult> GetMethod(Dictionary<string, string> request)
+        protected virtual async Task<IActionResult> GetMethod(Dictionary<string, string> request)
         {
             QueryStringSpecification<TEntity> spec = new QueryStringSpecification<TEntity>(request);
             return await GetWithSpecification(spec);

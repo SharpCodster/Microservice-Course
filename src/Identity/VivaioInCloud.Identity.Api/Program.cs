@@ -14,13 +14,18 @@ using VivaioInCloud.Common.Middleware;
 using VivaioInCloud.Common.Repositories;
 using VivaioInCloud.Common.ServiceExtensions;
 using VivaioInCloud.Notificator;
+using VivaioInCloud.Identity.Entities.Models;
+using Microsoft.AspNetCore.Identity;
+using VivaioInCloud.Identity.Infrastructure.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // ESSENTIAL SERVICES ////////////////////////////////////////////////////////////////////////
-builder.Services.AddDatabase<ApplicationDbContext>(SolutionConstants.DatabasesName.CATALOG, builder.Configuration);
+builder.Services.AddDatabase<ApplicationDbContext>(SolutionConstants.DatabasesName.IDENTITY, builder.Configuration);
 builder.Services.AddControllers();
-builder.Services.AddSwagger("Catalog Microservice");
+builder.Services.AddSwagger("Identity Microservice");
+builder.Services.AddPublicKeyAuth(builder.Configuration);
+builder.Services.AddPrivateKeyAuth<ApplicationDbContext, ApplicationUser, ApplicationRole>(builder.Configuration);
 builder.Services.AddAutoMapperWithConfig();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ISpecificationEvaluator, SpecificationEvaluator>(p => new SpecificationEvaluator(false));
@@ -41,6 +46,15 @@ builder.Services.AddServices(builder.Configuration);
 
 // END //////////////////////////////////////////////////////////////////////////////////////
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var scopedProvider = scope.ServiceProvider;
+    var userManager = scopedProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManager = scopedProvider.GetRequiredService<RoleManager<ApplicationRole>>();
+    var identityContext = scopedProvider.GetRequiredService<ApplicationDbContext>();
+    await DbContextSeed.SeedAsync(identityContext, userManager, roleManager);
+}
 
 if (app.Environment.IsDevelopment())
 {

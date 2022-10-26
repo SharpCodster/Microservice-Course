@@ -23,12 +23,7 @@ namespace VivaioInCloud.Identity.Entities.Models
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpirationDate { get; set; }
 
-        public bool IsDomainlUser { get; set; } = false;
-
         public bool IsActive { get; set; } = true;
-
-        public long? InstallerId { get; set; } = null;
-
 
         public DateTime CreatedAtUtc { get; set; }
         public string CreatedBy { get; set; }
