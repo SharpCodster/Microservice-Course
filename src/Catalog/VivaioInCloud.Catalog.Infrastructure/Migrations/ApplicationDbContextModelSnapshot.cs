@@ -2,8 +2,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VivaioInCloud.Catalog.Infrastructure;
 
 #nullable disable
@@ -18,57 +18,57 @@ namespace VivaioInCloud.Catalog.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("VivaioInCloud.Catalog.Entities.Models.CatalogItem", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)")
+                        .HasColumnType("text")
                         .HasColumnName("Id")
                         .HasColumnOrder(0);
 
                     b.Property<string>("CategoryId")
-                        .HasColumnType("nvarchar(450)")
+                        .HasColumnType("text")
                         .HasColumnOrder(3);
 
                     b.Property<DateTime>("CreatedAtUtc")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreatedAtUtc")
                         .HasColumnOrder(1000);
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasMaxLength(180)
-                        .HasColumnType("nvarchar(180)")
+                        .HasColumnType("character varying(180)")
                         .HasColumnName("CreatedBy")
                         .HasColumnOrder(1001);
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("text")
                         .HasColumnOrder(2);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnName("IsDeleted")
                         .HasColumnOrder(1004);
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("text")
                         .HasColumnOrder(1);
 
                     b.Property<DateTime>("UpdatedAtUtc")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("UpdatedAtUtc")
                         .HasColumnOrder(1002);
 
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
                         .HasMaxLength(180)
-                        .HasColumnType("nvarchar(180)")
+                        .HasColumnType("character varying(180)")
                         .HasColumnName("UpdatedBy")
                         .HasColumnOrder(1003);
 
@@ -82,41 +82,41 @@ namespace VivaioInCloud.Catalog.Infrastructure.Migrations
             modelBuilder.Entity("VivaioInCloud.Catalog.Entities.Models.ItemType", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)")
+                        .HasColumnType("text")
                         .HasColumnName("Id")
                         .HasColumnOrder(0);
 
                     b.Property<DateTime>("CreatedAtUtc")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreatedAtUtc")
                         .HasColumnOrder(1000);
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasMaxLength(180)
-                        .HasColumnType("nvarchar(180)")
+                        .HasColumnType("character varying(180)")
                         .HasColumnName("CreatedBy")
                         .HasColumnOrder(1001);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
+                        .HasColumnType("boolean")
                         .HasColumnName("IsDeleted")
                         .HasColumnOrder(1004);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("text")
                         .HasColumnOrder(1);
 
                     b.Property<DateTime>("UpdatedAtUtc")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("UpdatedAtUtc")
                         .HasColumnOrder(1002);
 
                     b.Property<string>("UpdatedBy")
                         .IsRequired()
                         .HasMaxLength(180)
-                        .HasColumnType("nvarchar(180)")
+                        .HasColumnType("character varying(180)")
                         .HasColumnName("UpdatedBy")
                         .HasColumnOrder(1003);
 

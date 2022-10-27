@@ -18,6 +18,9 @@ services:
 
   identity:
     image: identity
+    depends_on:
+      database:
+        condition: service_completed_successfully
     environment:
       ASPNETCORE_ENVIRONMENT: ${CURRENT_ENV}
       ConnectionStrings__IdentityDatabase: ${IDENTITY_DATABASE}
@@ -34,6 +37,9 @@ services:
 
   catalog:
     image: catalog
+    depends_on:
+      database:
+        condition: service_completed_successfully
     environment:
       ASPNETCORE_ENVIRONMENT: ${CURRENT_ENV}
       ConnectionStrings__CatalogDatabase: ${CATALOG_DATABASE}

@@ -30,6 +30,7 @@ namespace VivaioInCloud.Catalog.Infrastructure.Migrations
                     { "CE826748-979B-4E75-B79A-37B11E19DEDF", new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), "SEEDER", false, "gazebo", new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), "SEEDER" },
                     { "D68FB54D-0369-488B-8D16-38970FF26896", new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), "SEEDER", false, "rose", new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), "SEEDER" }
                 });
+            
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -45,25 +46,25 @@ namespace VivaioInCloud.Catalog.Infrastructure.Migrations
                 table: "ItemTypes",
                 keyColumn: "Id",
                 keyValue: "235D0B4B-5046-4759-8E7D-D60873E1F7E8");
-            
+
             migrationBuilder.DeleteData(
                 schema: "dbo",
                 table: "ItemTypes",
                 keyColumn: "Id",
                 keyValue: "32781F4C-381A-449A-A16B-3C57690D599A");
-            
+
             migrationBuilder.DeleteData(
                 schema: "dbo",
                 table: "ItemTypes",
                 keyColumn: "Id",
                 keyValue: "46981D42-DE4A-4084-8AAE-6DDFF896434C");
-            
+
             migrationBuilder.DeleteData(
                 schema: "dbo",
                 table: "ItemTypes",
                 keyColumn: "Id",
                 keyValue: "572C7BE0-BFDC-4AE9-A056-AD568DF6A4BC");
-            
+
             migrationBuilder.DeleteData(
                 schema: "dbo",
                 table: "ItemTypes",
@@ -75,49 +76,49 @@ namespace VivaioInCloud.Catalog.Infrastructure.Migrations
                 table: "ItemTypes",
                 keyColumn: "Id",
                 keyValue: "67D10465-8B17-479A-9859-83D16B11DD84");
-            
+
             migrationBuilder.DeleteData(
                 schema: "dbo",
                 table: "ItemTypes",
                 keyColumn: "Id",
                 keyValue: "7DA220D3-70EF-424D-9BFD-BFD4D290664D");
-            
+
             migrationBuilder.DeleteData(
                 schema: "dbo",
                 table: "ItemTypes",
                 keyColumn: "Id",
                 keyValue: "9CF6AB99-7A88-40B2-8D19-23868DCAFD03");
-            
+
             migrationBuilder.DeleteData(
                 schema: "dbo",
                 table: "ItemTypes",
                 keyColumn: "Id",
                 keyValue: "A50108A3-AA1A-4ED8-AED6-500B906830C9");
-            
+
             migrationBuilder.DeleteData(
                 schema: "dbo",
                 table: "ItemTypes",
                 keyColumn: "Id",
                 keyValue: "A5475794-16F9-4C66-9E39-9E48D94941B9");
-            
+
             migrationBuilder.DeleteData(
                 schema: "dbo",
                 table: "ItemTypes",
                 keyColumn: "Id",
                 keyValue: "BA4A9EDE-54EB-4768-875F-36DA8A6D94BC");
-            
+
             migrationBuilder.DeleteData(
                 schema: "dbo",
                 table: "ItemTypes",
                 keyColumn: "Id",
                 keyValue: "CDCD18A8-9DF4-4224-984D-E8D0FFE2AD2B");
-            
+
             migrationBuilder.DeleteData(
                 schema: "dbo",
                 table: "ItemTypes",
                 keyColumn: "Id",
                 keyValue: "CE826748-979B-4E75-B79A-37B11E19DEDF");
-            
+
             migrationBuilder.DeleteData(
                 schema: "dbo",
                 table: "ItemTypes",
