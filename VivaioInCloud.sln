@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Identity.Enti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Identity.Api", "src\Identity\VivaioInCloud.Identity.Api\VivaioInCloud.Identity.Api.csproj", "{1972A653-AECE-4CF0-8BEF-D7108A5B1102}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VivaioInCloud.Notificator", "src\Common\VivaioInCloud.Notificator\VivaioInCloud.Notificator.csproj", "{B3C93F5F-F793-4458-B74E-B06DA065DF33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VivaioInCloud.Notificator", "src\Common\VivaioInCloud.Notificator\VivaioInCloud.Notificator.csproj", "{B3C93F5F-F793-4458-B74E-B06DA065DF33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

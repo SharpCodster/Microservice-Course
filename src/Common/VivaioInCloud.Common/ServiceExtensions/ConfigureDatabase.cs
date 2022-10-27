@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VivaioInCloud.Common.ServiceExtensions
 {
@@ -16,7 +11,24 @@ namespace VivaioInCloud.Common.ServiceExtensions
         {
             var config = services.BuildServiceProvider().GetService<IConfiguration>();
             var connectionString = config!.GetConnectionString(dbName);
-            return services.AddDbContext<TDbContext>(options => options.UseSqlServer(connectionString));
+
+            if (String.IsNullOrEmpty(connectionString))
+            {
+                return services;
+            }
+
+            if (connectionString.ToLower().StartsWith("host"))
+            {
+                services.AddDbContext<TDbContext>(options => 
+                options.UseNpgsql(connectionString,
+                    options => options.UseAdminDatabase("initial_db")));
+            }
+            else if (connectionString.ToLower().StartsWith("server"))
+            {
+                services.AddDbContext<TDbContext>(options => options.UseSqlServer(connectionString));
+            }
+
+            return services;
         }
     }
 }

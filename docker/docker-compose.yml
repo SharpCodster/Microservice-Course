@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+
+  database:
+    image: 'postgres:latest'
+    container_name: my_db
+    hostname: my_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_DEFAULT}
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+
+  identity:
+    image: identity
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${CURRENT_ENV}
+      ConnectionStrings__IdentityDatabase: ${IDENTITY_DATABASE}
+      JWT__Audience: ${JWT_AUDIENCE}
+      JWT__Issuer: ${JWT_ISSUER}
+      JWT__AccessTokenExpirationHours: ${JWT_ACCESS_TOKEN_EXPIRATION_H}
+      JWT__RefreshTokenExpirationDays: ${JWT_REFRESH_TOKEN_EXPIRATION_D}
+      JWT__PrivateKey: ${JWT_PRIVATE_KEY}
+      JWT__PublicKey: ${JWT_PUBLIC_KEY}
+      AccountRedirectUrls__ConfirmAccountUrl: ${ACCOUNT_CONFIRM_ACCOUNT_URL}
+      AccountRedirectUrls__ResetPasswordUrl: ${ACCOUNT_RESET_PASSWORD_URL}
+    ports:
+     - "5001:1050"
+
+  catalog:
+    image: catalog
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${CURRENT_ENV}
+      ConnectionStrings__CatalogDatabase: ${CATALOG_DATABASE}
+      JWT__Audience: ${JWT_AUDIENCE}
+      JWT__Issuer: ${JWT_ISSUER}
+      JWT__PublicKey: ${JWT_PUBLIC_KEY}
+    ports:
+     - "5002:1060"
+
+networks:
+  agent_network:
+    driver: overlay
+
+volumes:
+  portainer_data:
+

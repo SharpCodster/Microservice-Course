@@ -10,8 +10,8 @@ namespace VivaioInCloud.Identity.Infrastructure.Configurations
         public static async Task SeedAsync(ApplicationDbContext dbContext,
             UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
+            dbContext.Database.EnsureCreated();
             dbContext.Database.Migrate();
-
 
             if (!await roleManager.RoleExistsAsync(SolutionConstants.Authorization.Roles.ADMIN))
             {

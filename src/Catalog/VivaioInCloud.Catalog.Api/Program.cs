@@ -14,6 +14,9 @@ using VivaioInCloud.Common.Middleware;
 using VivaioInCloud.Common.Repositories;
 using VivaioInCloud.Common.ServiceExtensions;
 using VivaioInCloud.Notificator;
+using Microsoft.AspNetCore.Identity;
+using VivaioInCloud.Identity.Entities.Models;
+using VivaioInCloud.Catalog.Infrastructure.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +45,13 @@ builder.Services.AddServices(builder.Configuration);
 
 // END //////////////////////////////////////////////////////////////////////////////////////
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var scopedProvider = scope.ServiceProvider;
+    var dbContext = scopedProvider.GetRequiredService<ApplicationDbContext>();
+    await DbContextSeed.SeedAsync(dbContext);
+}
 
 if (app.Environment.IsDevelopment())
 {
