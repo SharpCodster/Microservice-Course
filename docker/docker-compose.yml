@@ -16,11 +16,23 @@ services:
     ports:
       - 5432:5432
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ./rabbitmq/data/:/var/lib/rabbitmq/
+        - ./rabbitmq/log/:/var/log/rabbitmq
+    networks:
+        - rabbitmq_go_net
+
   identity:
     image: identity
     depends_on:
       database:
-        condition: service_completed_successfully
+        condition: service_started
     environment:
       ASPNETCORE_ENVIRONMENT: ${CURRENT_ENV}
       ConnectionStrings__IdentityDatabase: ${IDENTITY_DATABASE}
@@ -39,7 +51,7 @@ services:
     image: catalog
     depends_on:
       database:
-        condition: service_completed_successfully
+        condition: service_started
     environment:
       ASPNETCORE_ENVIRONMENT: ${CURRENT_ENV}
       ConnectionStrings__CatalogDatabase: ${CATALOG_DATABASE}
@@ -50,9 +62,7 @@ services:
      - "5002:1060"
 
 networks:
-  agent_network:
-    driver: overlay
+  rabbitmq_go_net:
+    driver: bridge
 
-volumes:
-  portainer_data:
 

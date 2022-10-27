@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 /docker/db-data
+/docker/rabbitmq/data
