@@ -22,6 +22,11 @@ namespace VivaioInCloud.Notificator.Service
             _options = options.Value;
         }
 
+        public async Task NotifyNewUserCreated(NewUserCreated newUSer)
+        {
+            await Task.CompletedTask;
+        }
+
         public async Task SendEmail(SendEmailRequest mail, CancellationToken cancellationToken = default)
         {
             string output = JsonConvert.SerializeObject(mail);

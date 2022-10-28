@@ -16,6 +16,7 @@ namespace VivaioInCloud.Identity.Services
                 .AddScoped<ITokenClaimsService, TokenClaimService>()
                 .AddScoped<IUserAuthenticationManager, UserAuthenticationManager>()
                 .AddScoped<IApplicationRoleService, ApplicationRoleService>()
+                .AddScoped<IUserRegistrationService, UserRegistrationService>()
             ;
         }
     }

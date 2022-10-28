@@ -69,7 +69,7 @@ namespace VivaioInCloud.Identity.Controllers
         [HttpPost]
         [Route("user-refresh")]
         [Tags("user-authentication")]
-        public async Task<IActionResult> RefreshToken(RefreshTokenRequest request)
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request)
         {
             ValidationResult validationResult = await _refreshValidator.ValidateAsync(request);
             if (!validationResult.IsValid)
@@ -166,10 +166,13 @@ namespace VivaioInCloud.Identity.Controllers
         }
 
 
+
+
+        
+
         [HttpPost]
         [Route("register")]
         [Tags("user-authentication")]
-        [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<ActionResult> Register([FromBody] RegisterUserRequest model)
         {
             var response = await _identityService.RegisterNewUser(model);
@@ -206,21 +209,5 @@ namespace VivaioInCloud.Identity.Controllers
         }
 
 
-        [HttpGet]
-        [Route("deactivate")]
-        [Tags("user-authentication")]
-        [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
-        public async Task<ActionResult> Deactivate([FromQuery] string userId)
-        {
-
-            var response = await _identityService.DeactivateUser(userId);
-
-            if (response)
-            {
-                return Ok(response);
-            }
-
-            return StatusCode(StatusCodes.Status400BadRequest, response);
-        }
     }
 }

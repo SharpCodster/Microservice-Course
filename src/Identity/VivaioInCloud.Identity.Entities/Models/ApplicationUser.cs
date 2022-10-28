@@ -20,6 +20,10 @@ namespace VivaioInCloud.Identity.Entities.Models
             IdentityRoles = new HashSet<ApplicationRole>();
         }
 
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        
+
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpirationDate { get; set; }
 

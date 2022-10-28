@@ -12,6 +12,7 @@ namespace VivaioInCloud.Identity.Controllers
 {
     [Route("api/v1")]
     [ApiController]
+    [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
     public class ApplicationRoleController : RestController<ApplicationRole, ApplicationRoleDtoRead, ApplicationRoleDtoWrite>
     {
         public ApplicationRoleController(IValidator<ApplicationRoleDtoWrite> validator, IMapper mapper, IApplicationRoleService service, ILogger<ApplicationRoleController> logger)
@@ -39,7 +40,6 @@ namespace VivaioInCloud.Identity.Controllers
         [HttpPost]
         [Route("application-roles")]
         [Tags("ApplicationRoles")]
-        [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Create([FromBody] ApplicationRoleDtoWrite newDto)
         {
             return await PostMethod(newDto);
@@ -48,7 +48,6 @@ namespace VivaioInCloud.Identity.Controllers
         [HttpPut]
         [Route("application-roles/{id}")]
         [Tags("ApplicationRoles")]
-        //[Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Update([FromRoute] string id, [FromBody] ApplicationRoleDtoWrite updateDto)
         {
             return await PutMethod(id, updateDto);
@@ -57,7 +56,6 @@ namespace VivaioInCloud.Identity.Controllers
         [HttpPatch]
         [Route("application-roles/{id}")]
         [Tags("ApplicationRoles")]
-        [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Patch([FromRoute] string id, [FromBody] Dictionary<string, object> valuesToPatch)
         {
             return await PatchMethod(id, valuesToPatch);
@@ -66,8 +64,6 @@ namespace VivaioInCloud.Identity.Controllers
         [HttpDelete]
         [Route("application-roles/{id}")]
         [Tags("ApplicationRoles")]
-        [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
-        [Authorize(Roles = SolutionConstants.Authorization.Roles.USER)]
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             return await DeleteMethod(id);

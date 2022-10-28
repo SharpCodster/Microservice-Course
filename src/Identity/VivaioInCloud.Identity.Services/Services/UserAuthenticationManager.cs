@@ -14,6 +14,7 @@ using VivaioInCloud.Identity.Entities.Requests;
 using VivaioInCloud.Identity.Model.Models;
 using VivaioInCloud.Identity.Model.Responses;
 using VivaioInCloud.Identity.Entities.Responses;
+using VivaioInCloud.Identity.Entities.Dtos;
 
 namespace VivaioInCloud.Identity.Services.Services
 {

@@ -10,5 +10,9 @@ namespace VivaioInCloud.Notificator.Abstraction
     public interface INotify
     {
         Task SendEmail(SendEmailRequest mail, CancellationToken cancellationToken = default);
+
+
+
+        Task NotifyNewUserCreated(NewUserCreated newUSer);
     }
 }

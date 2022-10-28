@@ -1,4 +1,5 @@
-﻿using VivaioInCloud.Identity.Entities.Requests;
+﻿using VivaioInCloud.Identity.Entities.Dtos;
+using VivaioInCloud.Identity.Entities.Requests;
 using VivaioInCloud.Identity.Model.Responses;
 
 namespace VivaioInCloud.Identity.Abstraction.Services
