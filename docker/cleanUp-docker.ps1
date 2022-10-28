@@ -10,6 +10,7 @@ docker rm $(docker ps -a -q)
 #docker rmi -f $(docker images -q) <- questo cancellava tutto
 docker rmi -f identity
 docker rmi -f catalog
+docker rmi -f notification
 
 docker rm $(docker ps -a -f status=exited -q)
 

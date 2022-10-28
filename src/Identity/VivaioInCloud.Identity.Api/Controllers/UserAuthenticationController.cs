@@ -46,6 +46,7 @@ namespace VivaioInCloud.Identity.Controllers
 
         [HttpPost]
         [Route("user-login")]
+        [Tags("user-authentication")]
         public async Task<ActionResult> Login([FromBody] LoginRequest model)
         {
             ValidationResult validationResult = await _loginValidator.ValidateAsync(model);
@@ -65,8 +66,9 @@ namespace VivaioInCloud.Identity.Controllers
             return Unauthorized(response);
         }
 
-        [AllowAnonymous]
-        [HttpPost("user-refresh")]
+        [HttpPost]
+        [Route("user-refresh")]
+        [Tags("user-authentication")]
         public async Task<IActionResult> RefreshToken(RefreshTokenRequest request)
         {
             ValidationResult validationResult = await _refreshValidator.ValidateAsync(request);
@@ -85,6 +87,7 @@ namespace VivaioInCloud.Identity.Controllers
 
         [HttpPost]
         [Route("reset-password")]
+        [Tags("user-authentication")]
         public async Task<IActionResult> SendResetPassword([FromBody] ResetPasswordRequest model)
         {
             var token = await _identityService.GeneratePasswordResetTokenAsync(model.Email);
@@ -115,6 +118,7 @@ namespace VivaioInCloud.Identity.Controllers
 
         [HttpPost]
         [Route("reset-password-confirmation")]
+        [Tags("user-authentication")]
         public async Task<IActionResult> ConfirmResetPassword([FromBody] ResetPasswordRequest model)
         {
             var reset = await _identityService.ConfirmResetPasswordAsync(model);
@@ -123,6 +127,7 @@ namespace VivaioInCloud.Identity.Controllers
 
         [HttpPost]
         [Route("send-confirmation-email")]
+        [Tags("user-authentication")]
         public async Task<IActionResult> ResendConfirmation([FromBody] ConfirmEmailRequest model)
         {
             var token = await _identityService.GenerateEmailConfirmationTokenAsync(model.Email);
@@ -153,6 +158,7 @@ namespace VivaioInCloud.Identity.Controllers
 
         [HttpPost]
         [Route("confirm-email")]
+        [Tags("user-authentication")]
         public async Task<ActionResult> ConfirmEmail([FromBody] ConfirmEmailRequest model)
         {
             var reset = await _identityService.ConfirmEmailAsync(model);
@@ -162,6 +168,7 @@ namespace VivaioInCloud.Identity.Controllers
 
         [HttpPost]
         [Route("register")]
+        [Tags("user-authentication")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<ActionResult> Register([FromBody] RegisterUserRequest model)
         {
@@ -201,6 +208,7 @@ namespace VivaioInCloud.Identity.Controllers
 
         [HttpGet]
         [Route("deactivate")]
+        [Tags("user-authentication")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<ActionResult> Deactivate([FromQuery] string userId)
         {

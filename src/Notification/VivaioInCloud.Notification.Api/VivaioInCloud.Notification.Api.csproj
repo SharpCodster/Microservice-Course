@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\VivaioInCloud.Common\VivaioInCloud.Common.csproj" />
+    <ProjectReference Include="..\..\Common\VivaioInCloud.Notificator\VivaioInCloud.Notificator.csproj" />
+    <ProjectReference Include="..\..\Identity\VivaioInCloud.Identity.Entities\VivaioInCloud.Identity.Entities.csproj" />
+    <ProjectReference Include="..\VivaioInCloud.Notification.Abstraction\VivaioInCloud.Notification.Abstraction.csproj" />
+    <ProjectReference Include="..\VivaioInCloud.Notification.Entities\VivaioInCloud.Notification.Entities.csproj" />
+    <ProjectReference Include="..\VivaioInCloud.Notification.Infrastructure\VivaioInCloud.Notification.Infrastructure.csproj" />
+    <ProjectReference Include="..\VivaioInCloud.Notification.Services\VivaioInCloud.Notification.Services.csproj" />
+  </ItemGroup>
+
+</Project>

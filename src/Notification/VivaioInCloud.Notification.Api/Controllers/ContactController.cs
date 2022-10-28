@@ -1,62 +1,61 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VivaioInCloud.Common;
 using VivaioInCloud.Common.Controllers;
-using VivaioInCloud.Identity.Abstraction.Services;
-using VivaioInCloud.Identity.Entities.Dtos;
-using VivaioInCloud.Identity.Entities.Models;
+using VivaioInCloud.Notification.Abstraction.Services;
+using VivaioInCloud.Notification.Entities.Dtos;
+using VivaioInCloud.Notification.Entities.Models;
 
-namespace VivaioInCloud.Identity.Controllers
+namespace VivaioInCloud.Notification.Api.Controllers
 {
-    [Route("api/v1")]
     [ApiController]
-    public class ApplicationUserController : RestController<ApplicationUser, ApplicationUserDtoRead, ApplicationUserDtoWrite>
+    [Route("api/v1")]
+    public class ContactController : RestController<Contact, ContactDtoRead, ContactDtoWrite>
     {
-        public ApplicationUserController(IValidator<ApplicationUserDtoWrite> validator, IMapper mapper, IApplicationUserService service, ILogger<ApplicationUserController> logger)
+        public ContactController(IValidator<ContactDtoWrite> validator, IMapper mapper, IContactService service, ILogger<ContactController> logger)
             : base(validator, mapper, service, logger)
         {
-
         }
 
         [HttpGet]
-        [Route("application-users")]
-        [Tags("ApplicationUsers")]
+        [Route("contacts")]
+        [Tags("notification-contacts")]
         public async Task<IActionResult> Get([FromQuery] Dictionary<string, string> request)
         {
             return await GetMethod(request);
         }
 
         [HttpGet]
-        [Route("application-users/{id}")]
-        [Tags("ApplicationUsers")]
+        [Route("contacts/{id}")]
+        [Tags("notification-contacts")]
         public async Task<IActionResult> GetById([FromRoute] string id)
         {
             return await GetByIdMethod(id);
         }
 
         [HttpPost]
-        [Route("application-users")]
-        [Tags("ApplicationUsers")]
+        [Route("contacts")]
+        [Tags("notification-contacts")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
-        public async Task<IActionResult> Create([FromBody] ApplicationUserDtoWrite newDto)
+        public async Task<IActionResult> Create([FromBody] ContactDtoWrite newDto)
         {
             return await PostMethod(newDto);
         }
 
         [HttpPut]
-        [Route("application-users/{id}")]
-        [Tags("ApplicationUsers")]
+        [Route("contacts/{id}")]
+        [Tags("notification-contacts")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
-        public async Task<IActionResult> Update(string id, [FromBody] ApplicationUserDtoWrite updateDto)
+        public async Task<IActionResult> Update(string id, [FromBody] ContactDtoWrite updateDto)
         {
             return await PutMethod(id, updateDto);
         }
 
         [HttpPatch]
-        [Route("application-users/{id}")]
-        [Tags("ApplicationUsers")]
+        [Route("contacts/{id}")]
+        [Tags("notification-contacts")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Patch(string id, [FromBody] Dictionary<string, object> valuesToPatch)
         {
@@ -64,8 +63,8 @@ namespace VivaioInCloud.Identity.Controllers
         }
 
         [HttpDelete]
-        [Route("application-users/{id}")]
-        [Tags("ApplicationUsers")]
+        [Route("contacts/{id}")]
+        [Tags("notification-contacts")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Delete(string id)
         {

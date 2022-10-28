@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 /docker/db-data
 /docker/rabbitmq/data
+/docker/pgadmin

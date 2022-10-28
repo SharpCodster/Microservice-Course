@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using VivaioInCloud.Common;
 using VivaioInCloud.Common.Controllers;
 using VivaioInCloud.Identity.Abstraction.Services;
 using VivaioInCloud.Identity.Entities.Dtos;
@@ -37,6 +39,7 @@ namespace VivaioInCloud.Identity.Controllers
         [HttpPost]
         [Route("application-roles")]
         [Tags("ApplicationRoles")]
+        [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Create([FromBody] ApplicationRoleDtoWrite newDto)
         {
             return await PostMethod(newDto);
@@ -45,7 +48,8 @@ namespace VivaioInCloud.Identity.Controllers
         [HttpPut]
         [Route("application-roles/{id}")]
         [Tags("ApplicationRoles")]
-        public async Task<IActionResult> Update(string id, [FromBody] ApplicationRoleDtoWrite updateDto)
+        //[Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
+        public async Task<IActionResult> Update([FromRoute] string id, [FromBody] ApplicationRoleDtoWrite updateDto)
         {
             return await PutMethod(id, updateDto);
         }
@@ -53,7 +57,8 @@ namespace VivaioInCloud.Identity.Controllers
         [HttpPatch]
         [Route("application-roles/{id}")]
         [Tags("ApplicationRoles")]
-        public async Task<IActionResult> Patch(string id, [FromBody] Dictionary<string, object> valuesToPatch)
+        [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
+        public async Task<IActionResult> Patch([FromRoute] string id, [FromBody] Dictionary<string, object> valuesToPatch)
         {
             return await PatchMethod(id, valuesToPatch);
         }
@@ -61,7 +66,9 @@ namespace VivaioInCloud.Identity.Controllers
         [HttpDelete]
         [Route("application-roles/{id}")]
         [Tags("ApplicationRoles")]
-        public async Task<IActionResult> Delete(string id)
+        [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
+        [Authorize(Roles = SolutionConstants.Authorization.Roles.USER)]
+        public async Task<IActionResult> Delete([FromRoute] string id)
         {
             return await DeleteMethod(id);
         }

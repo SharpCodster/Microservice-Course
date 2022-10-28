@@ -3,19 +3,19 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using VivaioInCloud.Common.Options;
 using VivaioInCloud.Identity.Abstraction.Services;
-using VivaioInCloud.Identity.Entities.Options;
 using VivaioInCloud.Identity.Model.Models;
 
 namespace VivaioInCloud.Identity.Services.Services
 {
     internal class TokenClaimService : ITokenClaimsService
     {
-        private readonly AuthenticationOptions _options;
+        private readonly AccessTokenOptions _options;
         private readonly RsaSecurityKey _rsaKey;
         private readonly SigningCredentials _signingCredentials;
 
-        public TokenClaimService(IOptions<AuthenticationOptions> options, SigningCredentials signingCredentials, RsaSecurityKey rsaKey)
+        public TokenClaimService(IOptions<AccessTokenOptions> options, SigningCredentials signingCredentials, RsaSecurityKey rsaKey)
         {
             _signingCredentials = signingCredentials;
             _options = options.Value;

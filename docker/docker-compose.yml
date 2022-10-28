@@ -13,8 +13,25 @@ services:
       POSTGRES_DB: ${DB_DEFAULT}
     volumes:
       - ./db-data/:/var/lib/postgresql/data/
+    networks:
+      - postgres
     ports:
       - 5432:5432
+  
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - ./pgadmin/:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - postgres
+    restart: unless-stopped
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -61,8 +78,24 @@ services:
     ports:
      - "5002:1060"
 
+  notification:
+    image: notification
+    depends_on:
+      database:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${CURRENT_ENV}
+      ConnectionStrings__NotificationDatabase: ${NOTIFICATION_DATABASE}
+      JWT__Audience: ${JWT_AUDIENCE}
+      JWT__Issuer: ${JWT_ISSUER}
+      JWT__PublicKey: ${JWT_PUBLIC_KEY}
+    ports:
+     - "5003:1070"
+
 networks:
   rabbitmq_go_net:
+    driver: bridge
+  postgres:
     driver: bridge
 
 

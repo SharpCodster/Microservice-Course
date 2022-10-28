@@ -21,6 +21,7 @@
         {
             public const string CATALOG = "CatalogDatabase";
             public const string IDENTITY = "IdentityDatabase";
+            public const string NOTIFICATION = "NotificationDatabase";
         }
 
         //public static class EventStream

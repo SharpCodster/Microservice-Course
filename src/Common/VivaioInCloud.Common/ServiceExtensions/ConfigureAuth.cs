@@ -61,12 +61,15 @@ namespace VivaioInCloud.Common.ServiceExtensions
                     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
                 .AddJwtBearer(jwtBearerOptions);
+            
+
+
 
             return services;
         }
 
 
-        public static IServiceCollection AddPrivateKeyAuth<TDbCtx, TUser, TRole>(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddPublicAndPrivateKeyAuth<TDbCtx, TUser, TRole>(this IServiceCollection services, IConfiguration configuration)
             where TDbCtx : DbContext
             where TUser : IdentityUser
             where TRole : IdentityRole
@@ -93,7 +96,51 @@ namespace VivaioInCloud.Common.ServiceExtensions
                 return signingCredentials;
             });
 
-            services.AddOptions<AccessoTokenOptions>()
+            services.AddSingleton<RsaSecurityKey>(provider =>
+            {
+                // It's required to register the RSA key with depedency injection.
+                // If you don't do this, the RSA instance will be prematurely disposed.
+                RSA rsa = RSA.Create();
+                rsa.ImportRSAPublicKey(
+                    source: Convert.FromBase64String(configuration["Jwt:PublicKey"]),
+                    bytesRead: out int _
+                );
+
+                return new RsaSecurityKey(rsa);
+            });
+
+            // Adding Authentication //////////////////////////////////////////////////////////////////// 
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+
+            // Adding Jwt Bearer ////////////////////////////////////////////////////////////////////
+            .AddJwtBearer(jwtOptions =>
+            {
+                SecurityKey securityKey = services.BuildServiceProvider().GetRequiredService<RsaSecurityKey>();
+
+                jwtOptions.IncludeErrorDetails = true;
+                jwtOptions.SaveToken = true;
+                jwtOptions.RequireHttpsMetadata = false;
+                jwtOptions.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = configuration["JWT:Issuer"],
+                    ValidateAudience = true,
+                    ValidAudience = configuration["JWT:Audience"],
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = securityKey,
+                    RequireExpirationTime = true,
+                    ClockSkew = TimeSpan.Zero,
+                    RequireSignedTokens = true
+                };
+            });
+
+            services.AddOptions<AccessTokenOptions>()
                 .Configure(options =>
                 {
                     options.Audience = configuration["JWT:Audience"];
