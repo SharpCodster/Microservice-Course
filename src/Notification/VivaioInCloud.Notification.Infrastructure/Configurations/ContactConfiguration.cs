@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VivaioInCloud.Common.Infrastructure.Configurations;
 using VivaioInCloud.Notification.Entities.Models;
+using VivaioInCloud.Common;
 
 namespace VivaioInCloud.Notification.Infrastructure.Configurations
 {
@@ -30,13 +31,26 @@ namespace VivaioInCloud.Notification.Infrastructure.Configurations
                 .HasColumnOrder(3);
 
 
-            //builder.HasOne(x => x.Category)
-            //    .WithMany(x => x.Items)
-            //    .HasForeignKey(x => x.CategoryId)
-            //    .IsRequired(false)
-            //    .OnDelete(DeleteBehavior.NoAction);
+            builder.HasData(
+                GetNewItem("13017f42-1786-4d94-9702-6e687f578a47", "user1@microsoft.com","John", "Doe"),
+                GetNewItem("7a63bbf1-4346-4aa7-a273-358f66224527", "user2@microsoft.com", "Paul", "Leen")
+            );
+        }
 
-
+        private Contact GetNewItem(string id, string email, string name, string surname)
+        {
+            return new Contact
+            {
+                Id = id,
+                Email = email,
+                Name = name,
+                Surname = surname,
+                IsDeleted = false,
+                CreatedAtUtc = SolutionConstants.Seeding.DATE,
+                UpdatedAtUtc = SolutionConstants.Seeding.DATE,
+                CreatedBy = SolutionConstants.Seeding.USER,
+                UpdatedBy = SolutionConstants.Seeding.USER
+            };
         }
     }
 }
