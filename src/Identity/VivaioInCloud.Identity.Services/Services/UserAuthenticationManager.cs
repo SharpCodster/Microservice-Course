@@ -1,20 +1,15 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.WebUtilities;
-using System.IdentityModel.Tokens.Jwt;
 using VivaioInCloud.Identity.Abstraction.Services;
+using VivaioInCloud.Identity.Entities.Dtos;
 using VivaioInCloud.Identity.Entities.Models;
 using VivaioInCloud.Identity.Entities.Requests;
+using VivaioInCloud.Identity.Entities.Responses;
 using VivaioInCloud.Identity.Model.Models;
 using VivaioInCloud.Identity.Model.Responses;
-using VivaioInCloud.Identity.Entities.Responses;
-using VivaioInCloud.Identity.Entities.Dtos;
 
 namespace VivaioInCloud.Identity.Services.Services
 {
@@ -67,7 +62,7 @@ namespace VivaioInCloud.Identity.Services.Services
                 return response.InvalidEmailOrPasswor();
             }
 
-            
+
             var checkPass = await _userService.CheckPasswordAsync(user, request.Password);
             if (!checkPass)
             {
@@ -79,7 +74,7 @@ namespace VivaioInCloud.Identity.Services.Services
             {
                 return response.EmailNotConfirmed();
             }
-            
+
 
             return await SignInUserAsync(response, user);
         }

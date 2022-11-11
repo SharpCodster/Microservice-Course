@@ -18,22 +18,22 @@ namespace VivaioInCloud.Identity.Infrastructure.Configurations
 
             var adminUser = GetBaseUser(
                 "3948107b-b570-4d64-8555-d16ad6119a28",
-                "admin@microsoft.com", 
-                "Admin", 
+                "admin@microsoft.com",
+                "Admin",
                 "");
             await CreatUser(userManager, adminUser, SolutionConstants.Authorization.Roles.ADMIN, SolutionConstants.Authorization.Roles.USER);
 
             var standardUser1 = GetBaseUser(
                 "13017f42-1786-4d94-9702-6e687f578a47",
-                "user1@microsoft.com", 
-                "John", 
+                "user1@microsoft.com",
+                "John",
                 "Doe");
             await CreatUser(userManager, standardUser1, SolutionConstants.Authorization.Roles.USER);
 
             var standardUser2 = GetBaseUser(
                 "7a63bbf1-4346-4aa7-a273-358f66224527",
-                "user2@microsoft.com", 
-                "Paul", 
+                "user2@microsoft.com",
+                "Paul",
                 "Leen");
             await CreatUser(userManager, standardUser2, SolutionConstants.Authorization.Roles.USER);
 
@@ -69,7 +69,7 @@ namespace VivaioInCloud.Identity.Infrastructure.Configurations
                 }
             }
 
-            foreach(var role in roles)
+            foreach (var role in roles)
             {
                 await userManager.AddToRoleAsync(userExists, role);
             }

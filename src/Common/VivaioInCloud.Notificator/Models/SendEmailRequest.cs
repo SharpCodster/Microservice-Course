@@ -8,7 +8,7 @@ namespace VivaioInCloud.Notificator.Models
         {
             Action = SolutionConstants.NotificationAction.EMAIL;
         }
-        
+
         public string Title { get; set; }
         public string TemplateName { get; set; }
         public List<string> ToList { get; set; }

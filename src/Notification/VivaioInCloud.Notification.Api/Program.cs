@@ -1,12 +1,6 @@
-using Ardalis.Specification.EntityFrameworkCore;
 using Ardalis.Specification;
+using Ardalis.Specification.EntityFrameworkCore;
 using FluentValidation;
-using System.Threading;
-using VivaioInCloud.Notification.Entities.Validators;
-using VivaioInCloud.Notification.Infrastructure;
-using VivaioInCloud.Notification.Infrastructure.Repositories;
-using VivaioInCloud.Notification.Services;
-using VivaioInCloud.Notification.Infrastructure.Configurations;
 using VivaioInCloud.Common;
 using VivaioInCloud.Common.Abstraction.Contexts;
 using VivaioInCloud.Common.Abstraction.Repositories;
@@ -14,9 +8,12 @@ using VivaioInCloud.Common.Contexts;
 using VivaioInCloud.Common.Middleware;
 using VivaioInCloud.Common.Repositories;
 using VivaioInCloud.Common.ServiceExtensions;
+using VivaioInCloud.Notification.Entities.Validators;
+using VivaioInCloud.Notification.Infrastructure;
+using VivaioInCloud.Notification.Infrastructure.Configurations;
+using VivaioInCloud.Notification.Infrastructure.Repositories;
+using VivaioInCloud.Notification.Services;
 using VivaioInCloud.Notificator;
-using Microsoft.AspNetCore.Identity;
-using VivaioInCloud.Identity.Entities.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);

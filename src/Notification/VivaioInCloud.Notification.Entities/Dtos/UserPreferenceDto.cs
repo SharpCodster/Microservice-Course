@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VivaioInCloud.Common.Entities.Dtos;
-using VivaioInCloud.Notification.Entities.Models;
+﻿using VivaioInCloud.Common.Entities.Dtos;
 
 namespace VivaioInCloud.Notification.Entities.Dtos
 {

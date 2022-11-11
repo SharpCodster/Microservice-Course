@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using System;
-using AutoMapper;
+using VivaioInCloud.Common.Entities.Profiles;
 using VivaioInCloud.Notification.Entities.Dtos;
 using VivaioInCloud.Notification.Entities.Models;
-using VivaioInCloud.Common.Entities.Profiles;
 
 namespace VivaioInCloud.Notification.Entities.Profiles
 {

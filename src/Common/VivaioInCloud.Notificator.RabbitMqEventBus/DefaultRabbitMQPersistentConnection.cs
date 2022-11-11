@@ -1,16 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
+using Polly;
+using Polly.Retry;
+using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RabbitMQ.Client.Exceptions;
-using RabbitMQ.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using VivaioInCloud.Notificator.RabbitMqEventBus.Abstraction;
-using Polly.Retry;
-using Polly;
 
 namespace VivaioInCloud.Notificator.RabbitMqEventBus
 {

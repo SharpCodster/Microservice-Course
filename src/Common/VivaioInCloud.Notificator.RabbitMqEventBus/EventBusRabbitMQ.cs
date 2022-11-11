@@ -1,18 +1,18 @@
-﻿using Polly;
+﻿using Autofac;
+using Microsoft.Extensions.Logging;
+using Polly;
 using Polly.Retry;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RabbitMQ.Client.Exceptions;
 using System.Net.Sockets;
-using System.Text.Json;
 using System.Text;
+using System.Text.Json;
 using VivaioInCloud.Common.Abstraction.Services.EventBus;
-using Microsoft.Extensions.Logging;
-using VivaioInCloud.Common.Services.EventBus;
-using VivaioInCloud.Notificator.RabbitMqEventBus.Abstraction;
 using VivaioInCloud.Common.Entities.Models;
 using VivaioInCloud.Common.Extensions;
-using Autofac;
+using VivaioInCloud.Common.Services.EventBus;
+using VivaioInCloud.Notificator.RabbitMqEventBus.Abstraction;
 
 namespace VivaioInCloud.Notificator.RabbitMqEventBus
 {

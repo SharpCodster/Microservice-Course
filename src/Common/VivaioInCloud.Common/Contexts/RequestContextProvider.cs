@@ -1,14 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using VivaioInCloud.Common.Abstraction.Contexts;
-using VivaioInCloud.Common.Entities.Dtos;
 using VivaioInCloud.Common.Entities.Models;
 using VivaioInCloud.Common.Options;
 

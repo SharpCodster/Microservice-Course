@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using VivaioInCloud.Catalog.Entities.Dtos;
 using VivaioInCloud.Catalog.Entities.Models;
-using VivaioInCloud.Common.Entities.Profiles;
 
 
 namespace VivaioInCloud.Catalog.Entities.Profiles

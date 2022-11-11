@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Reflection.Emit;
-using System.Reflection;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
+using System.Reflection;
 using VivaioInCloud.Identity.Entities.Models;
 
 namespace VivaioInCloud.Identity.Infrastructure
@@ -12,7 +10,7 @@ namespace VivaioInCloud.Identity.Infrastructure
     // update-database -Context ApplicationDbContext
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
-        
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

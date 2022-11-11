@@ -1,15 +1,12 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Web;
 using VivaioInCloud.Common;
-using VivaioInCloud.Common.Controllers;
 using VivaioInCloud.Identity.Abstraction.Services;
 using VivaioInCloud.Identity.Api.Options;
 using VivaioInCloud.Identity.Entities.Dtos;
-using VivaioInCloud.Identity.Entities.Models;
 using VivaioInCloud.Identity.Entities.Requests;
 using VivaioInCloud.Notificator.Abstraction;
 using VivaioInCloud.Notificator.Models;
@@ -168,7 +165,7 @@ namespace VivaioInCloud.Identity.Controllers
 
 
 
-        
+
 
         [HttpPost]
         [Route("register")]

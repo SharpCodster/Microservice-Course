@@ -1,15 +1,10 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using VivaioInCloud.Common.Options;
 
 namespace VivaioInCloud.Common.ServiceExtensions
@@ -29,7 +24,7 @@ namespace VivaioInCloud.Common.ServiceExtensions
                 );
                 return new RsaSecurityKey(rsa);
             });
-            
+
             Action<JwtBearerOptions> jwtBearerOptions = options =>
             {
                 SecurityKey rsa = services.BuildServiceProvider().GetRequiredService<RsaSecurityKey>();
@@ -51,9 +46,9 @@ namespace VivaioInCloud.Common.ServiceExtensions
                     RequireSignedTokens = true
                 };
             };
-            
+
             services.AddOptions<JwtBearerOptions>().Configure(jwtBearerOptions);
-            
+
             services.AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -61,7 +56,7 @@ namespace VivaioInCloud.Common.ServiceExtensions
                     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
                 .AddJwtBearer(jwtBearerOptions);
-            
+
 
 
 

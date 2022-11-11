@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -51,7 +50,7 @@ namespace VivaioInCloud.Catalog.Infrastructure.Migrations
                         principalSchema: "dbo",
                         principalTable: "ItemTypes",
                         principalColumn: "Id");
-                });  
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CatalogItems_CategoryId",

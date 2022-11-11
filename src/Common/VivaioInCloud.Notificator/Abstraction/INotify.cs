@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VivaioInCloud.Notificator.Models;
+﻿using VivaioInCloud.Notificator.Models;
 
 namespace VivaioInCloud.Notificator.Abstraction
 {

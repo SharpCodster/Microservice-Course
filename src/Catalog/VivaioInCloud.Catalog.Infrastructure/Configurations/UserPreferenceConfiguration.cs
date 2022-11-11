@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VivaioInCloud.Catalog.Entities.Models;
-using VivaioInCloud.Common;
 using VivaioInCloud.Common.Infrastructure.Configurations;
 
 namespace VivaioInCloud.Catalog.Infrastructure.Configurations

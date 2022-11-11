@@ -13,8 +13,8 @@ namespace VivaioInCloud.Notification.Entities.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
-       
+
         public virtual ICollection<UserNotification>? Notifications { get; set; }
-        public virtual ICollection<UserPreference>? UserPreferences { get; set; }  
+        public virtual ICollection<UserPreference>? UserPreferences { get; set; }
     }
 }

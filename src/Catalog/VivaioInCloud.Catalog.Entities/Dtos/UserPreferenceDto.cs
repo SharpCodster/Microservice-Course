@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VivaioInCloud.Catalog.Entities.Models;
-using VivaioInCloud.Common.Abstraction.Entities;
+﻿using VivaioInCloud.Common.Abstraction.Entities;
 
 namespace VivaioInCloud.Catalog.Entities.Dtos
 {

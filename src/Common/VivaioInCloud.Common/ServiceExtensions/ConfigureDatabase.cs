@@ -19,7 +19,7 @@ namespace VivaioInCloud.Common.ServiceExtensions
 
             if (connectionString.ToLower().StartsWith("host"))
             {
-                services.AddDbContext<TDbContext>(options => 
+                services.AddDbContext<TDbContext>(options =>
                 options.UseNpgsql(connectionString,
                     options => options.UseAdminDatabase("initial_db")));
             }

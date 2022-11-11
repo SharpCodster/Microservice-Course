@@ -1,15 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using VivaioInCloud.Common;
 using VivaioInCloud.Common.Abstraction.Contexts;
-using VivaioInCloud.Common.Contexts;
 using VivaioInCloud.Notificator.Abstraction;
 using VivaioInCloud.Notificator.Models;
 using VivaioInCloud.Notificator.Options;
@@ -49,7 +41,7 @@ namespace VivaioInCloud.Notificator.Service
         public async Task SendEmailAsync(SendEmailRequest mail, CancellationToken cancellationToken = default)
         {
             string output = JsonConvert.SerializeObject(mail);
-            
+
             await Task.CompletedTask;
         }
     }

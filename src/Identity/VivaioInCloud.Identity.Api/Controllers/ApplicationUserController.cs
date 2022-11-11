@@ -17,11 +17,11 @@ namespace VivaioInCloud.Identity.Controllers
     public class ApplicationUserController : RestController<ApplicationUser, ApplicationUserDtoRead, ApplicationUserDtoWrite>
     {
         private readonly IUserAuthenticationManager _identityService;
-        
+
         public ApplicationUserController(
             IUserAuthenticationManager identityService,
-            IValidator<ApplicationUserDtoWrite> validator, 
-            IMapper mapper, IApplicationUserService service, 
+            IValidator<ApplicationUserDtoWrite> validator,
+            IMapper mapper, IApplicationUserService service,
             ILogger<ApplicationUserController> logger)
             : base(validator, mapper, service, logger)
         {

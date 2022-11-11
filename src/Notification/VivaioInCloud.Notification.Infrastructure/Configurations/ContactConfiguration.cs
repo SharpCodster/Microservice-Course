@@ -1,13 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using VivaioInCloud.Common;
 using VivaioInCloud.Common.Infrastructure.Configurations;
 using VivaioInCloud.Notification.Entities.Models;
-using VivaioInCloud.Common;
 
 namespace VivaioInCloud.Notification.Infrastructure.Configurations
 {
@@ -32,7 +27,7 @@ namespace VivaioInCloud.Notification.Infrastructure.Configurations
 
 
             builder.HasData(
-                GetNewItem("13017f42-1786-4d94-9702-6e687f578a47", "user1@microsoft.com","John", "Doe"),
+                GetNewItem("13017f42-1786-4d94-9702-6e687f578a47", "user1@microsoft.com", "John", "Doe"),
                 GetNewItem("7a63bbf1-4346-4aa7-a273-358f66224527", "user2@microsoft.com", "Paul", "Leen")
             );
         }

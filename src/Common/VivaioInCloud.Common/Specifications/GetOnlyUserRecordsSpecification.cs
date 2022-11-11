@@ -1,6 +1,4 @@
 ﻿using Ardalis.Specification;
-using System.Linq.Expressions;
-using System.Xml.Linq;
 using VivaioInCloud.Common.Abstraction.Entities;
 
 namespace VivaioInCloud.Common.Specifications

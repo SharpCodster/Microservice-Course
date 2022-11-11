@@ -14,7 +14,7 @@ namespace VivaioInCloud.Identity.Services.Services
         protected readonly ILogger<UserRegistrationService> _logger;
         private readonly IApplicationUserService _userService;
         private readonly INotify _notify;
-        
+
         public UserRegistrationService(
             INotify notify,
             IApplicationUserService userService,
@@ -47,7 +47,7 @@ namespace VivaioInCloud.Identity.Services.Services
 
             var newUser = await _userService.CreateUserAsync(user, SolutionConstants.Authorization.DEFAULT_PASSWORD);
             await _userService.AddToRoleAsync(newUser, SolutionConstants.Authorization.Roles.ADMIN);
-            
+
             NewUserCreated userData = new NewUserCreated()
             {
                 UserID = newUser.Id,
@@ -63,7 +63,7 @@ namespace VivaioInCloud.Identity.Services.Services
             return newUser;
         }
 
-        
+
         public async Task<ApplicationUser> RegisterNewUser(RegisterUserRequest request)
         {
             var userExists = await _userService.GetByEmailAsync(request.Email);
@@ -86,7 +86,7 @@ namespace VivaioInCloud.Identity.Services.Services
 
             var newUser = await _userService.CreateUserAsync(user, request.Password);
             await _userService.AddToRoleAsync(newUser, SolutionConstants.Authorization.Roles.USER);
-            
+
             var token = await _userService.GenerateEmailConfirmationTokenAsync(newUser);
 
             NewUserCreated userData = new NewUserCreated()

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using VivaioInCloud.Common.Entities.Dtos;
 
 namespace VivaioInCloud.Common.Entities.Models
 {

@@ -48,7 +48,7 @@ namespace VivaioInCloud.Common.Services
             {
                 GetOnlyUserRecordsSpecification<TEntity> spec = new GetOnlyUserRecordsSpecification<TEntity>(requestContext.User.UserId);
                 return await base.ListAsync(spec);
-            }         
+            }
         }
 
         public override async Task<int> CountAllAsync()

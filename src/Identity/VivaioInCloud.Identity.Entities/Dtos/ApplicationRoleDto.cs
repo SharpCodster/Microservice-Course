@@ -6,7 +6,7 @@ namespace VivaioInCloud.Identity.Entities.Dtos
     {
         public string Name { get; set; }
     }
-    
+
     public class ApplicationRoleDtoWrite
     {
         public string Name { get; set; }

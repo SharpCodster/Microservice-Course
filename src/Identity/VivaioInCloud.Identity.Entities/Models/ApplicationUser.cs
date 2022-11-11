@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VivaioInCloud.Common.Abstraction.Entities;
 
 namespace VivaioInCloud.Identity.Entities.Models
@@ -22,7 +17,7 @@ namespace VivaioInCloud.Identity.Entities.Models
 
         public string Name { get; set; }
         public string Surname { get; set; }
-        
+
 
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpirationDate { get; set; }

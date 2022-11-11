@@ -7,7 +7,6 @@ using VivaioInCloud.Common.Abstraction.Entities;
 using VivaioInCloud.Common.Abstraction.Services;
 using VivaioInCloud.Common.Entities.Responses;
 using VivaioInCloud.Common.Json;
-using VivaioInCloud.Common.Specifications;
 using VivaioInCloud.Common.Validators;
 
 namespace VivaioInCloud.Common.Controllers
