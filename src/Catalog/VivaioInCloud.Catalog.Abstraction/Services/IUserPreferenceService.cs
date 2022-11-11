@@ -4,7 +4,7 @@ using VivaioInCloud.Common.Abstraction.Services;
 
 namespace VivaioInCloud.Catalog.Abstraction.Services
 {
-    public interface IUserPreferencesService : IBaseService<UserPreferences>
+    public interface IUserPreferenceService : IBaseService<UserPreference>
     {
     }
 }

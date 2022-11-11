@@ -13,84 +13,87 @@ namespace VivaioInCloud.Identity.Infrastructure.Configurations
             dbContext.Database.EnsureCreated();
             dbContext.Database.Migrate();
 
-            if (!await roleManager.RoleExistsAsync(SolutionConstants.Authorization.Roles.ADMIN))
+            await CreateRoles(roleManager, SolutionConstants.Authorization.Roles.ADMIN);
+            await CreateRoles(roleManager, SolutionConstants.Authorization.Roles.USER);
+
+            var adminUser = GetBaseUser(
+                "3948107b-b570-4d64-8555-d16ad6119a28",
+                "admin@microsoft.com", 
+                "Admin", 
+                "");
+            await CreatUser(userManager, adminUser, SolutionConstants.Authorization.Roles.ADMIN, SolutionConstants.Authorization.Roles.USER);
+
+            var standardUser1 = GetBaseUser(
+                "13017f42-1786-4d94-9702-6e687f578a47",
+                "user1@microsoft.com", 
+                "John", 
+                "Doe");
+            await CreatUser(userManager, standardUser1, SolutionConstants.Authorization.Roles.USER);
+
+            var standardUser2 = GetBaseUser(
+                "7a63bbf1-4346-4aa7-a273-358f66224527",
+                "user2@microsoft.com", 
+                "Paul", 
+                "Leen");
+            await CreatUser(userManager, standardUser2, SolutionConstants.Authorization.Roles.USER);
+
+        }
+
+        private static async Task CreateRoles(RoleManager<ApplicationRole> roleManager, string roleName)
+        {
+            if (!await roleManager.RoleExistsAsync(roleName))
             {
-                var role = new ApplicationRole(SolutionConstants.Authorization.Roles.ADMIN)
+                var role = new ApplicationRole(roleName)
                 {
-                    CreatedAtUtc = DateTime.UtcNow,
-                    CreatedBy = "SEEDER",
-                    UpdatedBy = "SEEDER",
-                    UpdatedAtUtc = DateTime.UtcNow,
+                    CreatedAtUtc = SolutionConstants.Seeding.DATE,
+                    UpdatedAtUtc = SolutionConstants.Seeding.DATE,
+                    CreatedBy = SolutionConstants.Seeding.USER,
+                    UpdatedBy = SolutionConstants.Seeding.USER,
                     IsDeleted = false
 
                 };
                 await roleManager.CreateAsync(role);
             }
+        }
 
-            if (!await roleManager.RoleExistsAsync(SolutionConstants.Authorization.Roles.USER))
-            {
-                var role = new ApplicationRole(SolutionConstants.Authorization.Roles.USER)
-                {
-                    CreatedAtUtc = DateTime.UtcNow,
-                    CreatedBy = "SEEDER",
-                    UpdatedBy = "SEEDER",
-                    UpdatedAtUtc = DateTime.UtcNow,
-                    IsDeleted = false
-
-                };
-                await roleManager.CreateAsync(role);
-            }
-
-
-            var adminUser = new ApplicationUser
-            {
-                UserName = "admin@microsoft.com",
-                Email = "admin@microsoft.com",
-                EmailConfirmed = true,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                CreatedAtUtc = DateTime.UtcNow,
-                UpdatedAtUtc = DateTime.UtcNow,
-                CreatedBy = "SEEDER",
-                UpdatedBy = "SEEDER"
-            };
-
-            var userExists = await userManager.FindByEmailAsync(adminUser.UserName);
+        private static async Task CreatUser(UserManager<ApplicationUser> userManager, ApplicationUser adminUser, params string[] roles)
+        {
+            var userExists = await userManager.FindByIdAsync(adminUser.Id);
             if (userExists == null)
             {
                 var result = await userManager.CreateAsync(adminUser, SolutionConstants.Authorization.DEFAULT_PASSWORD);
 
                 if (result.Succeeded)
                 {
-                    userExists = await userManager.FindByEmailAsync(adminUser.UserName);
-                    await userManager.AddToRoleAsync(userExists, SolutionConstants.Authorization.Roles.ADMIN);
-                    await userManager.AddToRoleAsync(userExists, SolutionConstants.Authorization.Roles.USER);
+                    userExists = await userManager.FindByIdAsync(adminUser.Id);
                 }
             }
 
-            var standardUser = new ApplicationUser
+            foreach(var role in roles)
             {
-                UserName = "user@microsoft.com",
-                Email = "user@microsoft.com",
+                await userManager.AddToRoleAsync(userExists, role);
+            }
+        }
+
+        public static ApplicationUser GetBaseUser(string id, string email, string name, string surname)
+        {
+            var newUSer = new ApplicationUser
+            {
+                Id = id,
+                UserName = email,
+                Email = email,
+                Name = name,
+                Surname = surname,
                 EmailConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                CreatedAtUtc = DateTime.UtcNow,
-                UpdatedAtUtc = DateTime.UtcNow,
-                CreatedBy = "SEEDER",
-                UpdatedBy = "SEEDER"
+                IsDeleted = false,
+                CreatedAtUtc = SolutionConstants.Seeding.DATE,
+                UpdatedAtUtc = SolutionConstants.Seeding.DATE,
+                CreatedBy = SolutionConstants.Seeding.USER,
+                UpdatedBy = SolutionConstants.Seeding.USER
             };
 
-            var standardUserExists = await userManager.FindByNameAsync(standardUser.UserName);
-            if (standardUserExists == null)
-            {
-                var result = await userManager.CreateAsync(standardUser, SolutionConstants.Authorization.DEFAULT_PASSWORD);
-
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(standardUser, SolutionConstants.Authorization.Roles.USER);
-                }
-            }
-
-
+            return newUSer;
         }
     }
 }

@@ -2,62 +2,63 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VivaioInCloud.Catalog.Abstraction.Services;
-using VivaioInCloud.Catalog.Entities.Dtos;
-using VivaioInCloud.Catalog.Entities.Models;
 using VivaioInCloud.Common;
 using VivaioInCloud.Common.Controllers;
 using VivaioInCloud.Common.Specifications;
+using VivaioInCloud.Notification.Abstraction.Services;
+using VivaioInCloud.Notification.Entities.Dtos;
+using VivaioInCloud.Notification.Entities.Models;
 
-namespace VivaioInCloud.Catalog.Api.Controllers
+namespace VivaioInCloud.Notification.Api.Controllers
 {
     [ApiController]
     [Route("api/v1")]
-    public class CatalogController : RestController<CatalogItem, CatalogItemDtoRead, CatalogItemDtoWrite>
+    [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
+    public class UserPreferenceController : RestController<UserPreference, UserPreferenceDtoRead, UserPreferenceDtoWrite>
     {
-        public CatalogController(IValidator<CatalogItemDtoWrite> validator, IMapper mapper, ICatalogItemService service, ILogger<CatalogController> logger)
+        public UserPreferenceController(IValidator<UserPreferenceDtoWrite> validator, IMapper mapper, IUserPreferenceService service, ILogger<UserPreferenceController> logger)
             : base(validator, mapper, service, logger)
         {
         }
 
         [HttpGet]
-        [Route("catalog")]
-        [Tags("catalog-catalog")]
+        [Route("user-preferences")]
+        [Tags("notification-user-preferences")]
         public async Task<IActionResult> Get([FromQuery] Dictionary<string, string> request)
         {
-            var spec = new AuditableQueryStringSpecification<CatalogItem>(request);
+            var spec = new BaseQueryStringSpecification<UserPreference>(request);
             return await GetWithSpecification(spec);
         }
 
         [HttpGet]
-        [Route("catalog/{id}")]
-        [Tags("catalog-catalog")]
+        [Route("user-preferences/{id}")]
+        [Tags("notification-user-preferences")]
         public async Task<IActionResult> GetById([FromRoute] string id)
         {
             return await GetByIdMethod(id);
         }
 
         [HttpPost]
-        [Route("catalog")]
-        [Tags("catalog-catalog")]
+        [Route("user-preferences")]
+        [Tags("notification-user-preferences")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
-        public async Task<IActionResult> Create([FromBody] CatalogItemDtoWrite newDto)
+        public async Task<IActionResult> Create([FromBody] UserPreferenceDtoWrite newDto)
         {
             return await PostMethod(newDto);
         }
 
         [HttpPut]
-        [Route("catalog/{id}")]
-        [Tags("catalog-catalog")]
+        [Route("user-preferences/{id}")]
+        [Tags("notification-user-preferences")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
-        public async Task<IActionResult> Update(string id, [FromBody] CatalogItemDtoWrite updateDto)
+        public async Task<IActionResult> Update(string id, [FromBody] UserPreferenceDtoWrite updateDto)
         {
             return await PutMethod(id, updateDto);
         }
 
         [HttpPatch]
-        [Route("catalog/{id}")]
-        [Tags("catalog-catalog")]
+        [Route("user-preferences/{id}")]
+        [Tags("notification-user-preferences")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Patch(string id, [FromBody] Dictionary<string, object> valuesToPatch)
         {
@@ -65,8 +66,8 @@ namespace VivaioInCloud.Catalog.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("catalog/{id}")]
-        [Tags("catalog-catalog")]
+        [Route("user-preferences/{id}")]
+        [Tags("notification-user-preferences")]
         [Authorize(Roles = SolutionConstants.Authorization.Roles.ADMIN)]
         public async Task<IActionResult> Delete(string id)
         {
@@ -74,3 +75,5 @@ namespace VivaioInCloud.Catalog.Api.Controllers
         }
     }
 }
+
+

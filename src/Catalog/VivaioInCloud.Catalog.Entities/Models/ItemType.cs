@@ -12,6 +12,6 @@ namespace VivaioInCloud.Catalog.Entities.Models
         public string Name { get; set; }
 
         public virtual ICollection<CatalogItem>? Items { get; set; }
-        public virtual ICollection<UserPreferences>? UserPreferences { get; set; }
+        public virtual ICollection<UserPreference>? UserPreferences { get; set; }
     }
 }

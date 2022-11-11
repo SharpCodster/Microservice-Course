@@ -13,7 +13,7 @@ using VivaioInCloud.Common.Validators;
 namespace VivaioInCloud.Common.Controllers
 {
     public abstract class RestController<TEntity, TOut, TIn> : ControllerBase
-        where TEntity : class, IIdentified, IAuditableUtc, new()
+        where TEntity : class, IIdentified, new()
         where TOut : class
         where TIn : class
     {
@@ -28,12 +28,6 @@ namespace VivaioInCloud.Common.Controllers
             _mapper = mapper;
             _service = service;
             _logger = logger;
-        }
-
-        protected virtual async Task<IActionResult> GetMethod(Dictionary<string, string> request)
-        {
-            QueryStringSpecification<TEntity> spec = new QueryStringSpecification<TEntity>(request);
-            return await GetWithSpecification(spec);
         }
 
         protected async Task<IActionResult> GetWithSpecification(ISpecification<TEntity> spec)

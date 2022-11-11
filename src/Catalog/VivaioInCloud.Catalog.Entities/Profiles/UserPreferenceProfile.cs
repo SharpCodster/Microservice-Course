@@ -6,17 +6,17 @@ using VivaioInCloud.Common.Entities.Profiles;
 
 namespace VivaioInCloud.Catalog.Entities.Profiles
 {
-    public class UserPreferencesProfile : Profile
+    public class UserPreferenceProfile : Profile
     {
-        public UserPreferencesProfile()
+        public UserPreferenceProfile()
         {
-            CreateMap<UserPreferences, UserPreferencesDtoRead>()
+            CreateMap<UserPreference, UserPreferenceDtoRead>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id))
                 .ForMember(dest => dest.OwnerId, opt => opt.MapFrom(source => source.OwnerId))
                 .ForMember(dest => dest.ItemType, opt => opt.MapFrom(source => source.ItemType))
             .ReverseMap();
 
-            CreateMap<UserPreferencesDtoWrite, UserPreferences>()
+            CreateMap<UserPreferenceDtoWrite, UserPreference>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.OwnerId, opt => opt.Ignore())
                 .ForMember(dest => dest.ItemType, opt => opt.Ignore())

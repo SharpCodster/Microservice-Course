@@ -10,22 +10,22 @@ using VivaioInCloud.Notificator.Models.Enums;
 
 namespace VivaioInCloud.Catalog.Services.Services
 {
-    public class UserPreferencesService : BaseUserOwnedService<UserPreferences>, IUserPreferencesService
+    public class UserPreferenceService : BaseUserOwnedService<UserPreference>, IUserPreferenceService
     {
         protected readonly INotify _notify;
 
-        public UserPreferencesService(
+        public UserPreferenceService(
             INotify notify,
             IRequestContextProvider requestContextProvider,
-            IAsyncRepository<UserPreferences> repository,
+            IAsyncRepository<UserPreference> repository,
             IUnitOfWork unitOfWork,
-            ILogger<UserPreferencesService> logger
+            ILogger<UserPreferenceService> logger
             ) : base(requestContextProvider, repository, unitOfWork, logger)
         {
             _notify = notify;
         }
 
-        protected override async Task AfterCreateAsync(UserPreferences entity)
+        protected override async Task AfterCreateAsync(UserPreference entity)
         {
             UserPreferencesMessage message = new UserPreferencesMessage();
             message.Change = ChangeType.Created;
@@ -34,7 +34,7 @@ namespace VivaioInCloud.Catalog.Services.Services
             await base.AfterCreateAsync(entity);
         }
 
-        protected override async Task AfterDeleteAsync(UserPreferences entity)
+        protected override async Task AfterDeleteAsync(UserPreference entity)
         {
             UserPreferencesMessage message = new UserPreferencesMessage();
             message.Change = ChangeType.Delteted;

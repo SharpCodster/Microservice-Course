@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VivaioInCloud.Common;
 using VivaioInCloud.Common.Controllers;
+using VivaioInCloud.Common.Specifications;
 using VivaioInCloud.Identity.Abstraction.Services;
 using VivaioInCloud.Identity.Entities.Dtos;
 using VivaioInCloud.Identity.Entities.Models;
@@ -32,7 +33,8 @@ namespace VivaioInCloud.Identity.Controllers
         [Tags("application-users")]
         public async Task<IActionResult> Get([FromQuery] Dictionary<string, string> request)
         {
-            return await GetMethod(request);
+            var spec = new AuditableQueryStringSpecification<ApplicationUser>(request);
+            return await GetWithSpecification(spec);
         }
 
         [HttpGet]

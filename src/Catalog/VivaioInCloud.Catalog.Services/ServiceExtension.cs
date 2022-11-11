@@ -12,6 +12,7 @@ namespace VivaioInCloud.Catalog.Services
             return services
                 .AddScoped<ICatalogItemService, CatalogItemService>()
                 .AddScoped<IItemTypeService, ItemTypeService>()
+                .AddScoped<IUserPreferenceService, UserPreferenceService>()
             ;
         }
     }

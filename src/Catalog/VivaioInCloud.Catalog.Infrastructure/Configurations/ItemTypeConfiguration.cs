@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VivaioInCloud.Catalog.Entities.Models;
+using VivaioInCloud.Common;
 using VivaioInCloud.Common.Infrastructure.Configurations;
 
 namespace VivaioInCloud.Catalog.Infrastructure.Configurations
@@ -21,22 +22,36 @@ namespace VivaioInCloud.Catalog.Infrastructure.Configurations
 
             builder.HasData
             (
-                new ItemType { Id = "210BEC9A-B503-41CC-B95B-4DE49191175A", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "alberi-ornamentali" },
-                new ItemType { Id = "235D0B4B-5046-4759-8E7D-D60873E1F7E8", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "accessori" },
-                new ItemType { Id = "32781F4C-381A-449A-A16B-3C57690D599A", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "potatura" },
-                new ItemType { Id = "46981D42-DE4A-4084-8AAE-6DDFF896434C", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "terriccio" },
-                new ItemType { Id = "572C7BE0-BFDC-4AE9-A056-AD568DF6A4BC", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "diserbante" },
-                new ItemType { Id = "64CA104F-EB10-4539-9319-C667D1CBDFC0", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "piante-da-interno" },
-                new ItemType { Id = "67D10465-8B17-479A-9859-83D16B11DD84", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "piante-da-esterno" },
-                new ItemType { Id = "7DA220D3-70EF-424D-9BFD-BFD4D290664D", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "alberi-da-frutto" },
-                new ItemType { Id = "9CF6AB99-7A88-40B2-8D19-23868DCAFD03", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "vasi" },
-                new ItemType { Id = "A50108A3-AA1A-4ED8-AED6-500B906830C9", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "prato" },
-                new ItemType { Id = "A5475794-16F9-4C66-9E39-9E48D94941B9", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "barbecue" },
-                new ItemType { Id = "BA4A9EDE-54EB-4768-875F-36DA8A6D94BC", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "cura-e-manutenzione" },
-                new ItemType { Id = "CDCD18A8-9DF4-4224-984D-E8D0FFE2AD2B", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "serre" },
-                new ItemType { Id = "CE826748-979B-4E75-B79A-37B11E19DEDF", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "gazebo" },
-                new ItemType { Id = "D68FB54D-0369-488B-8D16-38970FF26896", CreatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), UpdatedAtUtc = new DateTime(2022, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), CreatedBy = "SEEDER", UpdatedBy = "SEEDER", IsDeleted = false, Name = "rose" }
+                GetNewItem("210bec9a-b503-41cc-b95b-4de49191175a", "alberi-ornamentali"),
+                GetNewItem("235d0b4b-5046-4759-8e7d-d60873e1f7e8", "accessori"),
+                GetNewItem("32781f4c-381a-449a-a16b-3c57690d599a", "potatura"),
+                GetNewItem("46981d42-de4a-4084-8aae-6ddff896434c", "terriccio"),
+                GetNewItem("572c7be0-bfdc-4ae9-a056-ad568df6a4bc", "diserbante"),
+                GetNewItem("64ca104f-eb10-4539-9319-c667d1cbdfc0", "piante-da-interno"),
+                GetNewItem("67d10465-8b17-479a-9859-83d16b11dd84", "piante-da-esterno"),
+                GetNewItem("7da220d3-70ef-424d-9bfd-bfd4d290664d", "alberi-da-frutto"),
+                GetNewItem("9cf6ab99-7a88-40b2-8d19-23868dcafd03", "vasi"),
+                GetNewItem("a50108a3-aa1a-4ed8-aed6-500b906830c9", "prato"),
+                GetNewItem("a5475794-16f9-4c66-9e39-9e48d94941b9", "barbecue"),
+                GetNewItem("ba4a9ede-54eb-4768-875f-36da8a6d94bc", "cura-e-manutenzione"),
+                GetNewItem("cdcd18a8-9df4-4224-984d-e8d0ffe2ad2b", "serre"),
+                GetNewItem("ce826748-979b-4e75-b79a-37b11e19dedf", "gazebo"),
+                GetNewItem("d68fb54d-0369-488b-8d16-38970ff26896", "rose")
             );
+        }
+
+        private ItemType GetNewItem(string id, string name)
+        {
+            return new ItemType
+            {
+                Id = id,
+                Name = name,
+                IsDeleted = false,
+                CreatedAtUtc = SolutionConstants.Seeding.DATE,
+                UpdatedAtUtc = SolutionConstants.Seeding.DATE,
+                CreatedBy = SolutionConstants.Seeding.USER,
+                UpdatedBy = SolutionConstants.Seeding.USER
+            };
         }
     }
 }

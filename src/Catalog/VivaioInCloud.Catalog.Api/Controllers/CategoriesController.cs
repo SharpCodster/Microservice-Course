@@ -7,7 +7,7 @@ using VivaioInCloud.Catalog.Entities.Dtos;
 using VivaioInCloud.Catalog.Entities.Models;
 using VivaioInCloud.Common;
 using VivaioInCloud.Common.Controllers;
-
+using VivaioInCloud.Common.Specifications;
 
 namespace VivaioInCloud.Catalog.Api.Controllers
 {
@@ -25,7 +25,8 @@ namespace VivaioInCloud.Catalog.Api.Controllers
         [Tags("catalog-category")]
         public async Task<IActionResult> Get([FromQuery] Dictionary<string, string> request)
         {
-            return await GetMethod(request);
+            var spec = new AuditableQueryStringSpecification<ItemType>(request);
+            return await GetWithSpecification(spec);
         }
 
         [HttpGet]

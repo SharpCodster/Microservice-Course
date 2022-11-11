@@ -11,6 +11,8 @@ namespace VivaioInCloud.Notification.Services
         {
             return services
                 .AddScoped<IContactService, ContactService>()
+                .AddScoped<IUserNotificationService, UserNotificationService>()
+                .AddScoped<IUserPreferenceService, UserPreferenceService>()
             ;
         }
     }

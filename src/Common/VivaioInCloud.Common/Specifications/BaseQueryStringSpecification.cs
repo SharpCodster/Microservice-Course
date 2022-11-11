@@ -4,10 +4,10 @@ using VivaioInCloud.Common.Abstraction.Entities;
 
 namespace VivaioInCloud.Common.Specifications
 {
-    public class QueryStringSpecification<T> : Specification<T>
-        where T : class, IIdentified, IAuditableUtc, new()
+    public class BaseQueryStringSpecification<T> : Specification<T>
+        where T : class, IIdentified, new()
     {
-        protected QueryStringSpecification() : base()
+        protected BaseQueryStringSpecification() : base()
         {
         }
 
@@ -18,7 +18,7 @@ namespace VivaioInCloud.Common.Specifications
             return _query;
         }
 
-        public QueryStringSpecification(Dictionary<string, string> queryString) : this()
+        public BaseQueryStringSpecification(Dictionary<string, string> queryString) : this()
         {
             var queryStringToLower = queryString.ToDictionary(_ => _.Key.ToLower(), X => X.Value?.ToLower());
 
@@ -29,7 +29,6 @@ namespace VivaioInCloud.Common.Specifications
                 _query = list.Aggregate((a, b) => $"{a}&{b}");
             }
 
-            CheckIfIncludeDeleted(queryStringToLower);
             ApplyOrderBy(queryStringToLower);
             ApplySkipTake(queryStringToLower);
         }
@@ -59,11 +58,7 @@ namespace VivaioInCloud.Common.Specifications
         {
             string key = "orderby";
 
-            if (!queryString.ContainsKey(key))
-            {
-                Query.OrderBy(_ => _.CreatedAtUtc);
-            }
-            else
+            if (queryString.ContainsKey(key))
             {
                 string orderByPropery = queryString[key];
 
@@ -90,14 +85,6 @@ namespace VivaioInCloud.Common.Specifications
             var sortExpression = Expression.Lambda<Func<T, object>>(body, parameter);
             //var orderByExpression = Expression.Lambda<Func<T, object>>(propertyAccess, parameter);
             return sortExpression;
-        }
-
-        private void CheckIfIncludeDeleted(Dictionary<string, string> queryString)
-        {
-            if (!queryString.ContainsKey("includedeleted"))
-            {
-                Query.Where(_ => _.IsDeleted == false);
-            }
         }
     }
 }

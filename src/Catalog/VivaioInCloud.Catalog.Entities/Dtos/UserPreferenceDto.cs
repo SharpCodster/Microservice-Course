@@ -8,14 +8,14 @@ using VivaioInCloud.Common.Abstraction.Entities;
 
 namespace VivaioInCloud.Catalog.Entities.Dtos
 {
-    public class UserPreferencesDtoRead : IIdentified, IUserOwnedRecord
+    public class UserPreferenceDtoRead : IIdentified, IUserOwnedRecord
     {
         public string Id { get; set; }
         public string OwnerId { get; set; }
         public virtual ItemTypeDtoRead ItemType { get; set; }
     }
 
-    public class UserPreferencesDtoWrite
+    public class UserPreferenceDtoWrite
     {
         public string ItemTypeId { get; set; }
     }

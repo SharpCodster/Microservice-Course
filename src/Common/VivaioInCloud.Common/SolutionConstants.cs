@@ -67,5 +67,11 @@
             public const string PASSWORD_RESET = "password-reset-template";
             public const string CONFIRM_ACCOUNT = "confirm-account-template";
         }
+
+        public static class Seeding
+        {
+            public const string USER = "SEEDER";
+            public static DateTime DATE = new DateTime(2022, 10, 1, 0, 0, 0, DateTimeKind.Utc);
+        }
     }
 }

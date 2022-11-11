@@ -13,8 +13,9 @@ namespace VivaioInCloud.Notification.Infrastructure
         }
 
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<UserNotification> UserNotifications { get; set; }
+        public DbSet<UserPreference> UserPreferences { get; set; }
 
-        
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

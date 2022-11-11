@@ -3,7 +3,7 @@ using VivaioInCloud.Catalog.Entities.Dtos;
 
 namespace VivaioInCloud.Catalog.Entities.Validators
 {
-    public class UserPreferencesDtoWriteValidator : AbstractValidator<UserPreferencesDtoWrite>
+    public class UserPreferencesDtoWriteValidator : AbstractValidator<UserPreferenceDtoWrite>
     {
         public UserPreferencesDtoWriteValidator()
         {
