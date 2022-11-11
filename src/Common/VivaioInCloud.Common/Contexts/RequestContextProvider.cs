@@ -55,26 +55,33 @@ namespace VivaioInCloud.Common.Contexts
 
         private async Task<User> CreateUserFromRequestAsync()
         {
-            var httpContext = _httpContextAccessor.HttpContext;
-
-            var user = httpContext?.User;
-            var userIdentity = user?.Identity;
-            var userClaims = user?.Claims?.ToArray() ?? new Claim[] { };
-
-            var userRoles = userClaims.Where(_ => _.Type == ClaimTypes.Role).Select(_ => _.Value).ToArray();
-            var userNames = userClaims.Where(_ => _.Type == ClaimTypes.Name).Select(_ => _.Value).ToArray();
-            var userIds = userClaims.Where(_ => _.Type == ClaimTypes.NameIdentifier).Select(_ => _.Value).ToArray();
-
-
             var userDto = new User
             {
-                Principal = user,
-                UserId = "",
-                UserName = userIdentity?.Name,
-                UserClaims = userClaims,
-                UserRoles = userRoles
+                Principal = null,
+                UserId = SolutionConstants.Authorization.ANONIMOUS_USER,
+                UserName = SolutionConstants.Authorization.ANONIMOUS_USER,
+                UserClaims = new List<Claim>(),
+                UserRoles = new List<string>()
             };
 
+            var httpContext = _httpContextAccessor.HttpContext;
+
+            if (httpContext != null && httpContext.User != null && httpContext.User.Identity.IsAuthenticated)
+            {
+                var user = httpContext.User;
+                var userIdentity = user.Identity;
+                var userClaims = user.Claims ?? new List<Claim>();
+
+                var userRoles = userClaims.Where(_ => _.Type == ClaimTypes.Role).Select(_ => _.Value).ToList();
+                var userNames = userClaims.Where(_ => _.Type == ClaimTypes.Name).Select(_ => _.Value).ToList();
+                var userId = userClaims.Where(_ => _.Type == ClaimTypes.NameIdentifier).Select(_ => _.Value).FirstOrDefault();
+
+                userDto.Principal = user;
+                userDto.UserId = userId;
+                userDto.UserName = userIdentity?.Name;
+                userDto.UserClaims = userClaims;
+                userDto.UserRoles = userRoles;
+            }
             return await Task.FromResult(userDto);
         }
 
