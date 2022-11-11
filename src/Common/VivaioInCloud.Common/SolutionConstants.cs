@@ -40,6 +40,8 @@
 
         public static class Authorization
         {
+            public const string ANONIMOUS_USER = "anonimous";
+
             public static class Roles
             {
                 public const string ADMIN = "Admin";

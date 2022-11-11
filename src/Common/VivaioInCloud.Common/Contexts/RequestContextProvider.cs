@@ -25,10 +25,10 @@ namespace VivaioInCloud.Common.Contexts
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public RequestContext GetRequestContexAsync()
+        public async Task<RequestContext> GetRequestContexAsync()
         {
-            var user = CreateUserFromRequestAsync();
-            var correlationId = GetCorrelationIdFromRequestAsync();
+            var user = await CreateUserFromRequestAsync();
+            var correlationId = await GetCorrelationIdFromRequestAsync();
 
             return new RequestContext
             {
@@ -38,7 +38,7 @@ namespace VivaioInCloud.Common.Contexts
             };
         }
 
-        private string GetCorrelationIdFromRequestAsync()
+        private async Task<string> GetCorrelationIdFromRequestAsync()
         {
             var httpContext = _httpContextAccessor.HttpContext;
             string correlationId = "HttpContextNull";
@@ -50,14 +50,12 @@ namespace VivaioInCloud.Common.Contexts
                     correlationId = requestCorrelationId;
                 }
             }
-            return correlationId;
+            return await Task.FromResult(correlationId);
         }
 
-        private UserDto CreateUserFromRequestAsync()
+        private async Task<User> CreateUserFromRequestAsync()
         {
             var httpContext = _httpContextAccessor.HttpContext;
-
-
 
             var user = httpContext?.User;
             var userIdentity = user?.Identity;
@@ -68,13 +66,16 @@ namespace VivaioInCloud.Common.Contexts
             var userIds = userClaims.Where(_ => _.Type == ClaimTypes.NameIdentifier).Select(_ => _.Value).ToArray();
 
 
-            return new UserDto
+            var userDto = new User
             {
                 Principal = user,
+                UserId = "",
                 UserName = userIdentity?.Name,
                 UserClaims = userClaims,
                 UserRoles = userRoles
             };
+
+            return await Task.FromResult(userDto);
         }
 
         public T GetQueryStringValue<T>(string parameterName)

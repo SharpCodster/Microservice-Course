@@ -10,7 +10,7 @@ using VivaioInCloud.Identity.Model.Models;
 
 namespace VivaioInCloud.Identity.Services.Services
 {
-    internal class ApplicationUserService : AuditableBaseService<ApplicationUser>, IApplicationUserService
+    internal class ApplicationUserService : BaseAuditableService<ApplicationUser>, IApplicationUserService
     {
         private readonly UserManager<ApplicationUser> _userManager;
 

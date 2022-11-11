@@ -18,7 +18,7 @@ namespace VivaioInCloud.Identity.Controllers
         private readonly IUserAuthenticationManager _identityService;
         
         public ApplicationUserController(
-            IUserAuthenticationManager identityService,,
+            IUserAuthenticationManager identityService,
             IValidator<ApplicationUserDtoWrite> validator, 
             IMapper mapper, IApplicationUserService service, 
             ILogger<ApplicationUserController> logger)
@@ -91,19 +91,19 @@ namespace VivaioInCloud.Identity.Controllers
             return StatusCode(StatusCodes.Status400BadRequest, response);
         }
 
-        [HttpPost]
-        [Route("application-users/create-admin")]
-        [Tags("application-users")]
-        public async Task<ActionResult> CreateAdmin([FromBody] ApplicationUserDtoWrite newDto)
-        {
-            //var response = await _identityService.DeactivateUser(userId);
+        //[HttpPost]
+        //[Route("application-users/create-admin")]
+        //[Tags("application-users")]
+        //public async Task<ActionResult> CreateAdmin([FromBody] ApplicationUserDtoWrite newDto)
+        //{
+        //    //var response = await _identityService.DeactivateUser(userId);
 
-            //if (response)
-            //{
-            //    return Ok(response);
-            //}
+        //    //if (response)
+        //    //{
+        //    //    return Ok(response);
+        //    //}
 
-            return StatusCode(StatusCodes.Status400BadRequest, response);
-        }
+        //    return StatusCode(StatusCodes.Status400BadRequest, response);
+        //}
     }
 }

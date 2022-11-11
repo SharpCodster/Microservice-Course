@@ -9,10 +9,12 @@ namespace VivaioInCloud.Notificator.Abstraction
 {
     public interface INotify
     {
-        Task SendEmail(SendEmailRequest mail, CancellationToken cancellationToken = default);
+        Task SendEmailAsync(SendEmailRequest mail, CancellationToken cancellationToken = default);
 
 
+        Task NotifyUserPreferenceChangedAsync(UserPreferencesMessage message);
 
-        Task NotifyNewUserCreated(NewUserCreated newUSer);
+
+        Task NotifyNewUserCreatedAsync(NewUserCreated newUSer);
     }
 }

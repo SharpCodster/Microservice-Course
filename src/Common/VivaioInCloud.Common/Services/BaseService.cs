@@ -48,27 +48,22 @@ namespace VivaioInCloud.Common.Services
 
         public virtual async Task<IEnumerable<TEntity>> ListAsync(ISpecification<TEntity> specification)
         {
-            _logger.LogTrace($"BaseService.GetByIdAsync({specification.ToString()})");
+            _logger.LogTrace($"BaseService.GetByIdAsync({specification.CacheKey})");
             var result = await _repository.ListAsync(specification);
             return result;
         }
 
         public virtual async Task<int> CountAsync(ISpecification<TEntity> specification)
         {
-            _logger.LogTrace($"BaseService.CountAsync({specification.ToString()})");
+            _logger.LogTrace($"BaseService.CountAsync({specification.CacheKey})");
             var result = await _repository.CountAsync(specification);
             return result;
-        }
-
-        protected virtual async Task AfterGetAsync(TEntity entity)
-        {
-            await Task.CompletedTask;
         }
 
         /////// CREATE /////////////////////////////////////////////////
         public virtual async Task<TEntity> CreateAsync(TEntity entity)
         {
-            _logger.LogTrace($"BaseService.CreateAsync(JsonConvert.SerializeObject(entity, Formatting.None))");
+            _logger.LogTrace($"BaseService.CreateAsync(...)");
             using (IUnitOfWorkScope scope = _unitOfWork.BeginScope())
             {
                 await ValidateForCreateOrThrowAsync(entity);
@@ -77,14 +72,14 @@ namespace VivaioInCloud.Common.Services
                 TEntity result = await _repository.AddAsync(entity);
                 await AfterCreateAsync(result);
                 scope.Commit();
-                _logger.LogTrace($"BaseService.CreateAsync returned: JsonConvert.SerializeObject(result, Formatting.None)");
+                _logger.LogTrace($"BaseService.CreateAsync ended");
                 return result;
             }
         }
 
         public virtual async Task<IEnumerable<TEntity>> CreateRangeAsync(IEnumerable<TEntity> entities)
         {
-            _logger.LogTrace($"BaseService.CreateRangeAsync(JsonConvert.SerializeObject(entities, Formatting.None))");
+            _logger.LogTrace($"BaseService.CreateRangeAsync(...)");
 
             using (IUnitOfWorkScope scope = _unitOfWork.BeginScope())
             {
@@ -100,7 +95,7 @@ namespace VivaioInCloud.Common.Services
                     await AfterCreateAsync(result);
                 }
                 scope.Commit();
-                _logger.LogTrace($"BaseService.CreateRangeAsync returned: JsonConvert.SerializeObject(results, Formatting.None)");
+                _logger.LogTrace($"BaseService.CreateRangeAsync ended)");
                 return results;
             }
         }
@@ -133,18 +128,19 @@ namespace VivaioInCloud.Common.Services
         /////// UPDATE /////////////////////////////////////////////////
         public virtual async Task<TEntity> UpdateAsync(TEntity entity)
         {
-            _logger.LogTrace($"BaseService.UpdateAsync(JsonConvert.SerializeObject(entity, Formatting.None))");
+            _logger.LogTrace($"BaseService.UpdateAsync(...)");
             using (IUnitOfWorkScope scope = _unitOfWork.BeginScope())
             {
                 TEntity result = await UpdateCoreAsync(entity);
                 scope.Commit();
+                _logger.LogTrace($"BaseService.UpdateAsync ended)");
                 return result;
             }
         }
 
         public virtual async Task<IEnumerable<TEntity>> UpdateRangeAsync(IEnumerable<TEntity> entities)
         {
-            _logger.LogTrace($"BaseService.UpdateRangeAsync(JsonConvert.SerializeObject(entities, Formatting.None))");
+            _logger.LogTrace($"BaseService.UpdateRangeAsync(...)");
 
             using (IUnitOfWorkScope scope = _unitOfWork.BeginScope())
             {
@@ -160,20 +156,20 @@ namespace VivaioInCloud.Common.Services
                     await AfterUpdateAsync(result);
                 }
                 scope.Commit();
-                _logger.LogTrace($"BaseService.UpdateRangeAsync returned: JsonConvert.SerializeObject(entities, Formatting.None)");
+                _logger.LogTrace($"BaseService.UpdateRangeAsync ended");
                 return entities;
             }
         }
 
         protected virtual async Task<TEntity> UpdateCoreAsync(TEntity entity)
         {
-            _logger.LogTrace($"BaseService.UpdateCoreAsync(JsonConvert.SerializeObject(entity, Formatting.None))");
+            _logger.LogTrace($"BaseService.UpdateCoreAsync(...)");
             await ValidateForUpdateOrThrowAsync(entity);
             await BeforeUpdateAsync(entity);
             await ApplyAuditInfoForUpdateAsync(entity);
             await _repository.UpdateAsync(entity);
             await AfterUpdateAsync(entity);
-            _logger.LogTrace($"BaseService.UpdateCoreAsync returned: JsonConvert.SerializeObject(entity, Formatting.None)");
+            _logger.LogTrace($"BaseService.UpdateCoreAsync ended");
             return entity;
         }
 
@@ -200,22 +196,22 @@ namespace VivaioInCloud.Common.Services
         /////// PATCH /////////////////////////////////////////////////
         public virtual async Task<TEntity> PatchAsync(string id, Dictionary<string, object> valuesToPatch)
         {
-            _logger.LogTrace($"BaseService.PatchAsync({id}, JsonConvert.SerializeObject(valuesToPatch, Formatting.None))");
+            _logger.LogTrace($"BaseService.PatchAsync({id}, ...)");
             using (IUnitOfWorkScope scope = _unitOfWork.BeginScope())
             {
                 TEntity entity = await _repository.GetByIdAsync(id);
                 JsonConvert.PopulateObject(valuesToPatch.ToJson(), entity);
                 var result = await UpdateCoreAsync(entity);
                 scope.Commit();
+                _logger.LogTrace($"BaseService.PatchAsync ended");
                 return result;
-            };
+            }
         }
 
         /////// DELETE /////////////////////////////////////////////////
         public virtual async Task DeleteAsync(string id)
         {
             _logger.LogTrace($"BaseService.DeleteAsync({id})");
-
             using (IUnitOfWorkScope scope = _unitOfWork.BeginScope())
             {
                 TEntity entity = await _repository.GetByIdAsync(id);
@@ -226,6 +222,7 @@ namespace VivaioInCloud.Common.Services
                 await AfterDeleteAsync(entity);
                 scope.Commit();
             }
+            _logger.LogTrace($"BaseService.DeleteAsync ended");
         }
 
         protected virtual async Task ValidateForDeleteOrThrowAsync(TEntity entity)

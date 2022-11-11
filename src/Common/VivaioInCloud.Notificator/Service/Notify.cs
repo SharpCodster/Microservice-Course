@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using VivaioInCloud.Common;
+using VivaioInCloud.Common.Abstraction.Contexts;
+using VivaioInCloud.Common.Contexts;
 using VivaioInCloud.Notificator.Abstraction;
 using VivaioInCloud.Notificator.Models;
 using VivaioInCloud.Notificator.Options;
@@ -16,18 +19,34 @@ namespace VivaioInCloud.Notificator.Service
     public class Notify : INotify
     {
         private readonly NotificationOptions _options;
+        private readonly ILogger<Notify> _logger;
+        private readonly IRequestContextProvider _requestContextProvider;
 
-        public Notify(IOptions<NotificationOptions> options)
+        public Notify(IRequestContextProvider requestContextProvider, IOptions<NotificationOptions> options, ILogger<Notify> logger)
         {
+            _requestContextProvider = requestContextProvider;
             _options = options.Value;
+            _logger = logger;
         }
 
-        public async Task NotifyNewUserCreated(NewUserCreated newUSer)
+        public async Task NotifyNewUserCreatedAsync(NewUserCreated newUSer)
         {
+            var ctx = await _requestContextProvider.GetRequestContexAsync();
+
+            NotificationRequest req = new NotificationRequest();
+            req.CorrelationId = ctx.CorrelationId;
+            req.UserId = ctx.User.UserName;
+
+
             await Task.CompletedTask;
         }
 
-        public async Task SendEmail(SendEmailRequest mail, CancellationToken cancellationToken = default)
+        public Task NotifyUserPreferenceChangedAsync(UserPreferencesMessage message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task SendEmailAsync(SendEmailRequest mail, CancellationToken cancellationToken = default)
         {
             string output = JsonConvert.SerializeObject(mail);
             

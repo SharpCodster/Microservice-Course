@@ -8,7 +8,7 @@ using VivaioInCloud.Identity.Entities.Models;
 
 namespace VivaioInCloud.Identity.Services.Services
 {
-    public class ApplicationRoleService : AuditableBaseService<ApplicationRole>, IApplicationRoleService
+    public class ApplicationRoleService : BaseAuditableService<ApplicationRole>, IApplicationRoleService
     {
         private readonly RoleManager<ApplicationRole> _roleManager;
 

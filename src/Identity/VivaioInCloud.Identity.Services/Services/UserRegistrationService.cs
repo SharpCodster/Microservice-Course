@@ -58,7 +58,7 @@ namespace VivaioInCloud.Identity.Services.Services
                 EmailRegistrationToken = null
             };
 
-            await _notify.NotifyNewUserCreated(userData);
+            await _notify.NotifyNewUserCreatedAsync(userData);
 
             return newUser;
         }
@@ -99,7 +99,7 @@ namespace VivaioInCloud.Identity.Services.Services
                 EmailRegistrationToken = token
             };
 
-            await _notify.NotifyNewUserCreated(userData);
+            await _notify.NotifyNewUserCreatedAsync(userData);
 
             return newUser;
         }

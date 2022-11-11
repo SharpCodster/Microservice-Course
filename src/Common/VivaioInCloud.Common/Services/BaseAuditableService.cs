@@ -6,16 +6,16 @@ using VivaioInCloud.Common.Entities.Models;
 
 namespace VivaioInCloud.Common.Services
 {
-    public abstract class AuditableBaseService<TEntity> : BaseService<TEntity>
+    public class BaseAuditableService<TEntity> : BaseService<TEntity>
         where TEntity : class, IIdentified, IAuditableUtc
     {
         protected readonly IRequestContextProvider _requestContextProvider;
 
-        public AuditableBaseService(
+        public BaseAuditableService(
             IRequestContextProvider requestContextProvider,
             IAsyncRepository<TEntity> repository,
             IUnitOfWork unitOfWork,
-            ILogger<AuditableBaseService<TEntity>> logger
+            ILogger<BaseAuditableService<TEntity>> logger
             ) : base(repository, unitOfWork, logger)
         {
             _requestContextProvider = requestContextProvider;
@@ -27,7 +27,6 @@ namespace VivaioInCloud.Common.Services
             using (IUnitOfWorkScope scope = _unitOfWork.BeginScope())
             {
                 TEntity entity = await _repository.GetByIdAsync(id);
-
                 await ValidateForDeleteOrThrowAsync(entity);
                 await BeforeDeleteAsync(entity);
                 await ApplyAuditForDeleteAsync(entity);
@@ -35,26 +34,23 @@ namespace VivaioInCloud.Common.Services
                 await AfterDeleteAsync(entity);
                 scope.Commit();
             }
+            _logger.LogTrace($"AuditableBaseService.DeleteAsync ended");
         }
 
         protected override async Task ApplyAuditInfoForCreateAsync(TEntity entity)
         {
-            RequestContext requestContext = _requestContextProvider.GetRequestContexAsync();
-
+            RequestContext requestContext = await _requestContextProvider.GetRequestContexAsync();
             entity.CreatedAtUtc = entity.UpdatedAtUtc = DateTime.UtcNow;
-            entity.CreatedBy = entity.UpdatedBy = requestContext?.User?.UserName ?? "NA";
+            entity.CreatedBy = entity.UpdatedBy = requestContext.User.UserId;
             entity.IsDeleted = false;
-
             await base.ApplyAuditInfoForCreateAsync(entity);
         }
 
         protected override async Task ApplyAuditInfoForUpdateAsync(TEntity entity)
         {
-            RequestContext requestContext = _requestContextProvider.GetRequestContexAsync();
-
+            RequestContext requestContext = await _requestContextProvider.GetRequestContexAsync();
             entity.UpdatedAtUtc = DateTime.UtcNow;
-            entity.UpdatedBy = requestContext?.User?.UserName ?? "NA";
-
+            entity.UpdatedBy = requestContext.User.UserId;
             await base.ApplyAuditInfoForUpdateAsync(entity);
         }
 

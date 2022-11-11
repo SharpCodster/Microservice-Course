@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VivaioInCloud.Common.Abstraction.Entities
+namespace VivaioInCloud.Notificator.Models.Enums
 {
-    public interface IUserOwnedRecord
+    public enum ChangeType
     {
-        string OwnerId { get; set; }
+        Created,
+        Updated,
+        Delteted
     }
 }

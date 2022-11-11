@@ -12,7 +12,7 @@ using VivaioInCloud.Notification.Entities.Models;
 
 namespace VivaioInCloud.Notification.Services.Services
 {
-    public class ContactService : AuditableBaseService<Contact>, IContactService
+    public class ContactService : BaseAuditableService<Contact>, IContactService
     {
         public ContactService(
             IRequestContextProvider requestContextProvider,

@@ -7,7 +7,7 @@ namespace VivaioInCloud.Common.Specifications
     public class QueryStringSpecification<T> : Specification<T>
         where T : class, IIdentified, IAuditableUtc, new()
     {
-        protected QueryStringSpecification()
+        protected QueryStringSpecification() : base()
         {
         }
 

@@ -14,6 +14,7 @@ namespace VivaioInCloud.Catalog.Infrastructure
 
         public DbSet<CatalogItem> CatalogItems { get; set; }
         public DbSet<ItemType> ItemTypes { get; set; }
+        public DbSet<UserPreferences> UserPreferences { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

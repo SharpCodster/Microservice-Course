@@ -7,7 +7,7 @@ using VivaioInCloud.Common.Services;
 
 namespace VivaioInCloud.Catalog.Services.Services
 {
-    public class CatalogItemService : AuditableBaseService<CatalogItem>, ICatalogItemService
+    public class CatalogItemService : BaseAuditableService<CatalogItem>, ICatalogItemService
     {
         public CatalogItemService(
             IRequestContextProvider requestContextProvider,

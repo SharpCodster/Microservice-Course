@@ -110,7 +110,7 @@ namespace VivaioInCloud.Identity.Controllers
                     Parameters = parameters
                 };
 
-                await _notify.SendEmail(mail);
+                await _notify.SendEmailAsync(mail);
             }
             // Non comunico se lindirizzo mail non esiste
             return Ok();
@@ -150,7 +150,7 @@ namespace VivaioInCloud.Identity.Controllers
                     Parameters = parameters
                 };
 
-                await _notify.SendEmail(mail);
+                await _notify.SendEmailAsync(mail);
             }
             // Non comunico se lindirizzo mail non esiste
             return Ok();
@@ -199,7 +199,7 @@ namespace VivaioInCloud.Identity.Controllers
                         Parameters = parameters
                     };
 
-                    await _notify.SendEmail(mail);
+                    await _notify.SendEmailAsync(mail);
                 }
 
                 return Ok(response);

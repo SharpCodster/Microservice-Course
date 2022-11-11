@@ -4,7 +4,7 @@ namespace VivaioInCloud.Common.Abstraction.Contexts
 {
     public interface IRequestContextProvider
     {
-        RequestContext GetRequestContexAsync();
+        Task<RequestContext> GetRequestContexAsync();
         T GetQueryStringValue<T>(string parameterName);
     }
 }
