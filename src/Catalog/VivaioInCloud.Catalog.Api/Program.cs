@@ -1,6 +1,7 @@
 using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
 using FluentValidation;
+using Microsoft.Extensions.Hosting;
 using VivaioInCloud.Catalog.Entities.Validators;
 using VivaioInCloud.Catalog.Infrastructure;
 using VivaioInCloud.Catalog.Infrastructure.Configurations;
@@ -10,6 +11,7 @@ using VivaioInCloud.Common;
 using VivaioInCloud.Common.Abstraction.Contexts;
 using VivaioInCloud.Common.Abstraction.Repositories;
 using VivaioInCloud.Common.Contexts;
+using VivaioInCloud.Common.Infrastructure;
 using VivaioInCloud.Common.Middleware;
 using VivaioInCloud.Common.Repositories;
 using VivaioInCloud.Common.ServiceExtensions;
@@ -43,12 +45,10 @@ builder.Services.AddServices(builder.Configuration);
 // END //////////////////////////////////////////////////////////////////////////////////////
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+app.MigrateDbContext<ApplicationDbContext>((context, services) =>
 {
-    var scopedProvider = scope.ServiceProvider;
-    var dbContext = scopedProvider.GetRequiredService<ApplicationDbContext>();
-    await DbContextSeed.SeedAsync(dbContext);
-}
+    DbContextSeed.SeedAsync(context, services).Wait();
+});
 
 if (app.Environment.IsDevelopment())
 {

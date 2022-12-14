@@ -48,21 +48,13 @@ namespace VivaioInCloud.Identity.Services.Services
             var newUser = await _userService.CreateUserAsync(user, SolutionConstants.Authorization.DEFAULT_PASSWORD);
             await _userService.AddToRoleAsync(newUser, SolutionConstants.Authorization.Roles.ADMIN);
 
-            NewUserCreated userData = new NewUserCreated()
-            {
-                UserID = newUser.Id,
-                Email = newUser.Email,
-                Name = newUser.Name,
-                Surname = newUser.Surname,
-                SendRegistrationEmail = !newUser.EmailConfirmed,
-                EmailRegistrationToken = null
-            };
+            NewUserCreated userData = new NewUserCreated(newUser.Id, newUser.Email,
+                newUser.Name, newUser.Surname, !newUser.EmailConfirmed,  null);
 
             await _notify.NotifyNewUserCreatedAsync(userData);
 
             return newUser;
         }
-
 
         public async Task<ApplicationUser> RegisterNewUser(RegisterUserRequest request)
         {
@@ -89,15 +81,8 @@ namespace VivaioInCloud.Identity.Services.Services
 
             var token = await _userService.GenerateEmailConfirmationTokenAsync(newUser);
 
-            NewUserCreated userData = new NewUserCreated()
-            {
-                UserID = newUser.Id,
-                Email = newUser.Email,
-                Name = newUser.Name,
-                Surname = newUser.Surname,
-                SendRegistrationEmail = !newUser.EmailConfirmed,
-                EmailRegistrationToken = token
-            };
+            NewUserCreated userData = new NewUserCreated(newUser.Id, newUser.Email,
+                newUser.Name, newUser.Surname, !newUser.EmailConfirmed, token);
 
             await _notify.NotifyNewUserCreatedAsync(userData);
 

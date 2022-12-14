@@ -21,11 +21,17 @@ namespace VivaioInCloud.Common.ServiceExtensions
             {
                 services.AddDbContext<TDbContext>(options =>
                 options.UseNpgsql(connectionString,
-                    options => options.UseAdminDatabase("initial_db")));
+                    options => {
+                        options.UseAdminDatabase("initial_db");
+                        options.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorCodesToAdd: null);
+                    }));
             }
             else if (connectionString.ToLower().StartsWith("server"))
             {
-                services.AddDbContext<TDbContext>(options => options.UseSqlServer(connectionString));
+                services.AddDbContext<TDbContext>(options => options.UseSqlServer(connectionString,
+                    options => {
+                        options.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+                    }));
             }
 
             return services;

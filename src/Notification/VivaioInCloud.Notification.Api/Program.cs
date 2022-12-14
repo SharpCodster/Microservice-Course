@@ -4,7 +4,9 @@ using FluentValidation;
 using VivaioInCloud.Common;
 using VivaioInCloud.Common.Abstraction.Contexts;
 using VivaioInCloud.Common.Abstraction.Repositories;
+using VivaioInCloud.Common.Abstraction.Services.EventBus;
 using VivaioInCloud.Common.Contexts;
+using VivaioInCloud.Common.Infrastructure;
 using VivaioInCloud.Common.Middleware;
 using VivaioInCloud.Common.Repositories;
 using VivaioInCloud.Common.ServiceExtensions;
@@ -13,8 +15,9 @@ using VivaioInCloud.Notification.Infrastructure;
 using VivaioInCloud.Notification.Infrastructure.Configurations;
 using VivaioInCloud.Notification.Infrastructure.Repositories;
 using VivaioInCloud.Notification.Services;
+using VivaioInCloud.Notification.Services.EventHandlers;
 using VivaioInCloud.Notificator;
-
+using VivaioInCloud.Notificator.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,12 +47,10 @@ builder.Services.AddServices(builder.Configuration);
 // END //////////////////////////////////////////////////////////////////////////////////////
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+app.MigrateDbContext<ApplicationDbContext>((context, services) =>
 {
-    var scopedProvider = scope.ServiceProvider;
-    var dbContext = scopedProvider.GetRequiredService<ApplicationDbContext>();
-    await DbContextSeed.SeedAsync(dbContext);
-}
+    DbContextSeed.SeedAsync(context, services).Wait();
+});
 
 if (app.Environment.IsDevelopment())
 {
@@ -63,5 +64,14 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.UseMiddleware<CorrelationIdMiddleware>();
+
+
+
+// Eventi
+var eventBus = app.Services.GetRequiredService<IEventBus>();
+eventBus.Subscribe<NewUserCreated, NewUserCreatedIntegrationEventHandler>();
+//eventBus.Subscribe<ProductPriceChangedIntegrationEvent, ProductPriceChangedIntegrationEventHandler>();
+//eventBus.Subscribe<OrderStartedIntegrationEvent, OrderStartedIntegrationEventHandler>();
+
 
 app.Run();

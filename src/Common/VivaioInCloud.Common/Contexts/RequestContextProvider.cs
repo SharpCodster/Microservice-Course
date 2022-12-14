@@ -28,7 +28,7 @@ namespace VivaioInCloud.Common.Contexts
             {
                 User = user,
                 CorrelationId = correlationId,
-                Query = _httpContextAccessor.HttpContext.Request.Query
+                Query = _httpContextAccessor.HttpContext?.Request?.Query
             };
         }
 

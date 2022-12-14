@@ -21,7 +21,8 @@ namespace VivaioInCloud.Identity.Controllers
         public ApplicationUserController(
             IUserAuthenticationManager identityService,
             IValidator<ApplicationUserDtoWrite> validator,
-            IMapper mapper, IApplicationUserService service,
+            IMapper mapper,
+            IApplicationUserService service,
             ILogger<ApplicationUserController> logger)
             : base(validator, mapper, service, logger)
         {

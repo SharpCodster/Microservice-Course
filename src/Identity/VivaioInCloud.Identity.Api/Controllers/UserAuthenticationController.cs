@@ -20,6 +20,7 @@ namespace VivaioInCloud.Identity.Controllers
         private readonly ILogger<UserAuthenticationController> _logger;
         private readonly IUserAuthenticationManager _identityService;
         private readonly INotify _notify;
+        private readonly IUserRegistrationService _userRegistrationService;
         private readonly AccountRedirectUrlsOptions _options;
         private readonly IValidator<LoginRequest> _loginValidator;
         private readonly IValidator<RefreshTokenRequest> _refreshValidator;
@@ -30,6 +31,7 @@ namespace VivaioInCloud.Identity.Controllers
             IUserAuthenticationManager identityService,
             ILogger<UserAuthenticationController> logger,
             INotify notify,
+            IUserRegistrationService userRegistrationService,
             IOptions<AccountRedirectUrlsOptions> options
             )
         {
@@ -38,6 +40,7 @@ namespace VivaioInCloud.Identity.Controllers
             _identityService = identityService;
             _logger = logger;
             _notify = notify;
+            _userRegistrationService = userRegistrationService;
             _options = options.Value;
         }
 
@@ -172,37 +175,39 @@ namespace VivaioInCloud.Identity.Controllers
         [Tags("user-authentication")]
         public async Task<ActionResult> Register([FromBody] RegisterUserRequest model)
         {
-            var response = await _identityService.RegisterNewUser(model);
+            //var response = await _identityService.RegisterNewUser(model);
 
-            if (response)
-            {
-                var token = await _identityService.GenerateEmailConfirmationTokenAsync(model.Email);
-                if (!String.IsNullOrEmpty(token))
-                {
-                    var url = HttpUtility.UrlEncode(String.Format(_options.ConfirmAccountUrl, token, model.Email));
+            //if (response)
+            //{
+            //    var token = await _identityService.GenerateEmailConfirmationTokenAsync(model.Email);
+            //    if (!String.IsNullOrEmpty(token))
+            //    {
+            //        var url = HttpUtility.UrlEncode(String.Format(_options.ConfirmAccountUrl, token, model.Email));
 
-                    List<string> toList = new List<string>();
-                    toList.Add(model.Email);
+            //        List<string> toList = new List<string>();
+            //        toList.Add(model.Email);
 
-                    Dictionary<string, string> parameters = new Dictionary<string, string>();
-                    parameters.Add("url", url);
+            //        Dictionary<string, string> parameters = new Dictionary<string, string>();
+            //        parameters.Add("url", url);
 
-                    SendEmailRequest mail = new SendEmailRequest()
-                    {
-                        Action = SolutionConstants.NotificationAction.EMAIL,
-                        Title = "Confirm Account",
-                        TemplateName = SolutionConstants.EmailTemplates.CONFIRM_ACCOUNT,
-                        ToList = toList,
-                        Parameters = parameters
-                    };
+            //        SendEmailRequest mail = new SendEmailRequest()
+            //        {
+            //            Action = SolutionConstants.NotificationAction.EMAIL,
+            //            Title = "Confirm Account",
+            //            TemplateName = SolutionConstants.EmailTemplates.CONFIRM_ACCOUNT,
+            //            ToList = toList,
+            //            Parameters = parameters
+            //        };
 
-                    await _notify.SendEmailAsync(mail);
-                }
+            //        await _notify.SendEmailAsync(mail);
+            //    }
 
-                return Ok(response);
-            }
+                var newUSer = await _userRegistrationService.RegisterNewUser(model);
 
-            return StatusCode(StatusCodes.Status400BadRequest, response);
+                return Ok(newUSer != null);
+            //}
+
+            //return StatusCode(StatusCodes.Status400BadRequest, response);
         }
 
 

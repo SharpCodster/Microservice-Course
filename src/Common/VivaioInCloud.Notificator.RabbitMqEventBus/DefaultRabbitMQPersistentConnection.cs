@@ -9,8 +9,7 @@ using VivaioInCloud.Notificator.RabbitMqEventBus.Abstraction;
 
 namespace VivaioInCloud.Notificator.RabbitMqEventBus
 {
-    public class DefaultRabbitMQPersistentConnection
-    : IRabbitMQPersistentConnection
+    public class DefaultRabbitMQPersistentConnection : IRabbitMQPersistentConnection
     {
         private readonly IConnectionFactory _connectionFactory;
         private readonly ILogger<DefaultRabbitMQPersistentConnection> _logger;

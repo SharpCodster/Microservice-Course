@@ -12,8 +12,8 @@ using VivaioInCloud.Common.Validators;
 namespace VivaioInCloud.Common.Controllers
 {
     public abstract class RestController<TEntity, TOut, TIn> : ControllerBase
-        where TEntity : class, IIdentified, new()
-        where TOut : class
+        where TEntity : class, IIdentified
+        where TOut : class, IIdentified
         where TIn : class
     {
         protected readonly ILogger<RestController<TEntity, TOut, TIn>> _logger;

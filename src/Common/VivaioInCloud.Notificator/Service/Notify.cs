@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using VivaioInCloud.Common.Abstraction.Contexts;
+using VivaioInCloud.Common.Abstraction.Services.EventBus;
 using VivaioInCloud.Notificator.Abstraction;
 using VivaioInCloud.Notificator.Models;
 using VivaioInCloud.Notificator.Options;
@@ -13,9 +14,11 @@ namespace VivaioInCloud.Notificator.Service
         private readonly NotificationOptions _options;
         private readonly ILogger<Notify> _logger;
         private readonly IRequestContextProvider _requestContextProvider;
+        private readonly IEventBus _eventBus;
 
-        public Notify(IRequestContextProvider requestContextProvider, IOptions<NotificationOptions> options, ILogger<Notify> logger)
+        public Notify(IEventBus eventBus, IRequestContextProvider requestContextProvider, IOptions<NotificationOptions> options, ILogger<Notify> logger)
         {
+            _eventBus = eventBus;
             _requestContextProvider = requestContextProvider;
             _options = options.Value;
             _logger = logger;
@@ -28,6 +31,9 @@ namespace VivaioInCloud.Notificator.Service
             NotificationRequest req = new NotificationRequest();
             req.CorrelationId = ctx.CorrelationId;
             req.UserId = ctx.User.UserName;
+
+
+            _eventBus.Publish(newUSer);
 
 
             await Task.CompletedTask;

@@ -226,7 +226,9 @@ namespace VivaioInCloud.Identity.Services.Services
                 Email = request.Email,
                 UserName = request.Email,
                 EmailConfirmed = false,
-                TwoFactorEnabled = false
+                TwoFactorEnabled = false,
+                Name = request.Name,
+                Surname = request.Surname
             };
 
             var newUser = await _userService.CreateUserAsync(user, request.Password);

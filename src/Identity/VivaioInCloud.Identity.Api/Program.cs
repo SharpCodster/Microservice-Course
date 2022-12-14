@@ -6,6 +6,7 @@ using VivaioInCloud.Common;
 using VivaioInCloud.Common.Abstraction.Contexts;
 using VivaioInCloud.Common.Abstraction.Repositories;
 using VivaioInCloud.Common.Contexts;
+using VivaioInCloud.Common.Infrastructure;
 using VivaioInCloud.Common.Middleware;
 using VivaioInCloud.Common.Repositories;
 using VivaioInCloud.Common.ServiceExtensions;
@@ -45,14 +46,10 @@ builder.Services.AddServices(builder.Configuration);
 // END //////////////////////////////////////////////////////////////////////////////////////
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+app.MigrateDbContext<ApplicationDbContext>((context, services) =>
 {
-    var scopedProvider = scope.ServiceProvider;
-    var userManager = scopedProvider.GetRequiredService<UserManager<ApplicationUser>>();
-    var roleManager = scopedProvider.GetRequiredService<RoleManager<ApplicationRole>>();
-    var identityContext = scopedProvider.GetRequiredService<ApplicationDbContext>();
-    await DbContextSeed.SeedAsync(identityContext, userManager, roleManager);
-}
+    DbContextSeed.SeedAsync(context, services).Wait();
+});
 
 if (app.Environment.IsDevelopment())
 {

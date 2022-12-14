@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VivaioInCloud.Notification.Abstraction.Services;
+using VivaioInCloud.Notification.Services.EventHandlers;
 using VivaioInCloud.Notification.Services.Services;
 
 namespace VivaioInCloud.Notification.Services
@@ -13,6 +14,9 @@ namespace VivaioInCloud.Notification.Services
                 .AddScoped<IContactService, ContactService>()
                 .AddScoped<IUserNotificationService, UserNotificationService>()
                 .AddScoped<IUserPreferenceService, UserPreferenceService>()
+
+
+                .AddTransient<NewUserCreatedIntegrationEventHandler>()
             ;
         }
     }

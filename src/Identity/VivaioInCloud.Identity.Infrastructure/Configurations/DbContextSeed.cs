@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using VivaioInCloud.Common;
 using VivaioInCloud.Identity.Entities.Models;
 
@@ -7,11 +8,10 @@ namespace VivaioInCloud.Identity.Infrastructure.Configurations
 {
     public static class DbContextSeed
     {
-        public static async Task SeedAsync(ApplicationDbContext dbContext,
-            UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
+        public static async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            dbContext.Database.EnsureCreated();
-            dbContext.Database.Migrate();
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
 
             await CreateRoles(roleManager, SolutionConstants.Authorization.Roles.ADMIN);
             await CreateRoles(roleManager, SolutionConstants.Authorization.Roles.USER);

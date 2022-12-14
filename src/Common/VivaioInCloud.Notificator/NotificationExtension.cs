@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using VivaioInCloud.Common;
 using VivaioInCloud.Notificator.Abstraction;
 using VivaioInCloud.Notificator.Options;
+using VivaioInCloud.Notificator.RabbitMqEventBus;
 using VivaioInCloud.Notificator.Service;
 
 namespace VivaioInCloud.Notificator
@@ -12,6 +13,8 @@ namespace VivaioInCloud.Notificator
         public static IServiceCollection AddNotification(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddOptions<NotificationOptions>().Bind(configuration.GetSection(SolutionConstants.ConfigSections.NOTIFICATION)).ValidateDataAnnotations();
+
+            services.AddRabbitMq(configuration);
 
             return services
                 .AddTransient<INotify, Notify>()
